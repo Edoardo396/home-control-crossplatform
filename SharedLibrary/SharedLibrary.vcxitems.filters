@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{fce6add7-c6cc-473c-acfb-ce50c75cecc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5cbf5a18-324e-4b63-b249-af0ab28192a6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyServerApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyRequestHandlerFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyRequestHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyServerApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyRequestHandlerFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyRequestHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\ConsoleLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
