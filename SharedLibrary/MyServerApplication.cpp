@@ -14,6 +14,7 @@
 #include "Poco/SAX/InputSource.h"
 #include "Poco/DOM/NamedNodeMap.h"
 #include "User.h"
+#include "ConsoleLogger.h"
 
 using std::cout;
 using std::endl;
@@ -62,13 +63,17 @@ int MyServerApplication::main(const std::vector<std::string>&) {
 
 	//User::users = std::list<User>();
 
+	ConsoleLogger::Write("Creating users list...", LogType::Message);
+
 	ReloadUsersFromXML();
 
-	HTTPServer server(new MyRequestHandlerFactory(), ServerSocket(8080), new HTTPServerParams);
+	ConsoleLogger::Write("Starting HTTPServer On Port " + std::to_string(port), LogType::Message);
+
+	HTTPServer server(new MyRequestHandlerFactory(), ServerSocket(port), new HTTPServerParams);
 
 	server.start();
 
-	std::cout << std::endl << "Server started" << std::endl;
+	ConsoleLogger::Write("Server Started, Waiting for Commands...", LogType::Message);
 
 	waitForTerminationRequest();
 
