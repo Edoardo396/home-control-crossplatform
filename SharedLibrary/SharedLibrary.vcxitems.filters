@@ -1,57 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyRequestHandler.cpp">
-      <Filter>Requests</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyRequestHandlerFactory.cpp">
-      <Filter>Requests</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyServerApplication.cpp">
-      <Filter>Requests</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\User.cpp">
-      <Filter>Support</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\Device.cpp">
-      <Filter>Devices</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Command.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Device.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandler.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyServerApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h" />
-    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyRequestHandler.h">
-      <Filter>Requests</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyRequestHandlerFactory.h">
-      <Filter>Requests</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\MyServerApplication.h">
-      <Filter>Requests</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\User.h">
-      <Filter>Support</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\ConsoleLogger.h">
-      <Filter>Support</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\Device.h">
-      <Filter>Devices</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\Users\edoardo.fullin\OneDrive\Programmazione\HomeControl\SharedLibrary\IParsable.h">
-      <Filter>Devices</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Command.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Devices">
-      <UniqueIdentifier>{123e6b35-cebd-408a-a61e-3bd6ba730eba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Requests">
-      <UniqueIdentifier>{4cdd628b-25d9-4a95-9f5a-a96f1b09eb01}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Support">
-      <UniqueIdentifier>{625af780-2ac1-43d2-a0a7-2e546e79b784}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ConsoleLogger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Device.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,9 @@
 #include "Device.h"
 #include "Poco/Net/ICMPClient.h"
 #include "Command.h"
+#include "ConsoleLogger.h"
+#include "Poco/Format.h"
+
 
 std::string Device::ExecuteCommand(std::string request) const {
 	return Command::ExecuteGETRequest(ipAddress, port, request);
@@ -30,6 +33,10 @@ std::string Device::ParseCommand(std::string request, std::vector<std::string> p
 
 		// TODO GetDeviceInfo, GetState, getDisplayName
 
+		if (request == "getDeviceInfo") { return this->ExecuteCommand(request); }
+		if (request == "getState") { return this->ExecuteCommand(request); }
+		if (request == "getDisplayName") { return this->ExecuteCommand(request); }
+
 	} catch (std::exception& e) {
 		return "false, " + std::string(e.what());
 	}
@@ -43,8 +50,25 @@ bool Device::Ping() const {
 
 bool Device::CheckReachability() {
 
+	try {
+		auto cmd = Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir("ping"));
+	} catch(std::exception& e) {
+		ConsoleLogger::Write(Poco::format("Device %d is not reachable anymore. %d", displayName, e.what()), LogType::Error);
+		state = State::NotReachable;
+		return false;
+	}
 
+	ConsoleLogger::Write(Poco::format("Device %d reached successfully.", displayName), LogType::Error);
+	state = State::Reachable;
+	return true;
+}
 
+void Device::SetOn() {
+	this->ExecuteCommand("setOn");
+}
+
+void Device::SetOff() {
+	this->ExecuteCommand("setOff");
 }
 
 Device::Device() {

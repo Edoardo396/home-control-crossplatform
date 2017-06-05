@@ -18,6 +18,11 @@ std::string Command::GetCommandDir(std::map<std::string, std::string> values) {
 	return s;
 }
 
+std::string Command::GetCommandDir(std::string request) {
+	std::map<std::string, std::string> map = { { "request", request } };
+	return GetCommandDir(map);
+}
+
 std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::string dir) {
 
 	using namespace Poco::Net;
