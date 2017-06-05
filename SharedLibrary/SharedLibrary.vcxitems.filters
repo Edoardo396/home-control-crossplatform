@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Command.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Device.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandler.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyServerApplication.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Support\Command.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Device.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\MyRequestHandler.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\MyRequestHandlerFactory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Support\User.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Command.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ConsoleLogger.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Device.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandler.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Support\Command.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Support\ConsoleLogger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\IParsable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\MyRequestHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\MyRequestHandlerFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Device.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Support\User.h" />
   </ItemGroup>
 </Project>

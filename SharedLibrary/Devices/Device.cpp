@@ -1,8 +1,8 @@
 #include "../HomeControlController (Windows)/stdafx.h"
 #include "Device.h"
 #include "Poco/Net/ICMPClient.h"
-#include "Command.h"
-#include "ConsoleLogger.h"
+#include "../Support/Command.h"
+#include "../Support/ConsoleLogger.h"
 #include "Poco/Format.h"
 
 

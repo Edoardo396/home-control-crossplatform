@@ -2,7 +2,7 @@
 
 #include <Poco/Net/IPAddress.h> // TODO Remove
 #include "IParsable.h"
-#include "Macros.h"
+#include "../Macros.h"
 
 ABSTRACT class Device : public IParsable {
 
