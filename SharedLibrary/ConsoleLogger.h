@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormatter.h"
-#include "../Macros.h"
+#include "Macros.h"
 
 enum class LogType {
 	Automator = 0, Warning = 1, Error = 2, Message = 3

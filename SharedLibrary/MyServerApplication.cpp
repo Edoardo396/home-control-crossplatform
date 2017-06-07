@@ -6,15 +6,15 @@
 #include <Poco/Net/HTTPResponse.h>
 #include <fstream>
 #include <Poco/Net/HTTPServerResponse.h>
-#include "Network/MyRequestHandlerFactory.h"
+#include "MyRequestHandlerFactory.h"
 #include "Poco/DOM/DOMParser.h"
 #include "Poco/DOM/Document.h"
 #include "Poco/DOM/NodeList.h"
 #include "Poco/DOM/AutoPtr.h"
 #include "Poco/SAX/InputSource.h"
 #include "Poco/DOM/NamedNodeMap.h"
-#include "Support/User.h"
-#include "Support/ConsoleLogger.h"
+#include "User.h"
+#include "ConsoleLogger.h"
 
 using std::cout;
 using std::endl;

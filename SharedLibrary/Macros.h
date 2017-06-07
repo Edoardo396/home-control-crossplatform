@@ -8,6 +8,8 @@ const int port = 8080;
 #ifndef _COLORS_
 #define _COLORS_
 
+typedef std::map<std::string, std::string> Dictionary;
+
 /* FOREGROUND */
 #define RST  "\x1B[0m"
 #define KRED  "\x1B[31m"

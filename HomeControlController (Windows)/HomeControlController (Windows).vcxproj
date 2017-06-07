@@ -74,7 +74,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\lib;$(LibraryPath)</LibraryPath>
-    <SourcePath>C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include;$(SourcePath)</SourcePath>
+    <SourcePath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include;$(SourcePath)</SourcePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -91,7 +92,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>../HomeControlController (Windows)/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>

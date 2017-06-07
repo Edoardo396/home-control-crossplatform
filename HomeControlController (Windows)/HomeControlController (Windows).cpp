@@ -3,7 +3,7 @@
 
 #include "../HomeControlController (Windows)/stdafx.h"
 #include "../SharedLibrary/MyServerApplication.h"
-#include "../SharedLibrary/Support/ConsoleLogger.h"
+#include "../SharedLibrary/ConsoleLogger.h"
 
 int main(int argc, char** argv) {
 	MyServerApplication app;
