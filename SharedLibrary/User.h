@@ -10,6 +10,9 @@ class User {
 	unsigned int accessLevel;
 
 public:
+
+	static User ANONYMOUS;
+
 	int getId() const { return id; }
 	std::string getName() const { return name; }
 	std::string getPassword() const { return password; }
@@ -23,7 +26,7 @@ public:
 	}
 
 	static User Login(std::string username, std::string password);
-	static std::list<User> users;
+	static std::list<User>* users;
 
 	friend std::ostream& operator<<(std::ostream& os, const User& obj) {
 		return os

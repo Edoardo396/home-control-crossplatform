@@ -31,7 +31,7 @@ auto MyServerApplication::ReloadUsersFromXML() {
 
 	using namespace Poco::XML;
 
-	auto usersList = std::list<User>();
+	auto usersList = new std::list<User>();
 
 	std::ifstream in("C:\\Users\\edoardo.fullin\\Desktop\\Database\\HomeControlDB.xml");
 	InputSource src(in);
@@ -47,7 +47,7 @@ auto MyServerApplication::ReloadUsersFromXML() {
 		// get user node
 		auto user = users->item(i);
 
-		usersList.push_back(User(
+		usersList->push_back(User(
 			stoi(user->attributes()->item(0)->innerText()),
 			user->getNodeByPath("//Nome")->innerText(),
 			user->getNodeByPath("//Password")->innerText(),
@@ -65,7 +65,7 @@ int MyServerApplication::main(const std::vector<std::string>&) {
 
 	ConsoleLogger::Write("Creating users list...", LogType::Message);
 
-	ReloadUsersFromXML();
+	User::users = ReloadUsersFromXML();
 
 	ConsoleLogger::Write("Starting HTTPServer On Port " + std::to_string(port), LogType::Message);
 

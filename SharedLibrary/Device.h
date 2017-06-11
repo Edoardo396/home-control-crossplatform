@@ -1,14 +1,16 @@
 #pragma once
 
 #include <Poco/Net/IPAddress.h> // TODO Remove
-#include "IParsable.h"
+#include "IParsable.hpp"
 #include "Macros.h"
+#include <list>
 
-ABSTRACT class Device : public IParsable {
+class Device : public IParsable {
 
 	enum class Location {
 		Device,
-		Server
+		Server,
+		Manual
 	};
 
 	enum class State {
@@ -20,14 +22,16 @@ ABSTRACT class Device : public IParsable {
 		Unknown
 	};
 
-	State state;
+	State state = State::Unknown;
 	Poco::Net::IPAddress ipAddress;
 	int requiredAccessLevel;
 	int port;
 	std::string displayName;
 
-
 public:
+
+	static std::list<Device*>* devices;
+
 	Device(State state, const Poco::Net::IPAddress& ip_address, int required_access_level, int port, const std::string& display_name)
 		: state(state),
 		  ipAddress(ip_address),
@@ -35,11 +39,6 @@ public:
 		  port(port),
 		  displayName(display_name) {
 	}
-
-	// TODO ExecuteCommand
-	// TODO ExecuteCommandDict
-
-	// TODO Ping
 
 protected:
 	std::string ExecuteCommand(std::string request) const;
@@ -53,6 +52,7 @@ public:
 
 	virtual void SetOn();
 	virtual void SetOff();
+	virtual std::string GetDeviceInfo();
 
 
 	Device();

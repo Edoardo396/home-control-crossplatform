@@ -71,6 +71,10 @@ void Device::SetOff() {
 	this->ExecuteCommand("setOff");
 }
 
+std::string Device::GetDeviceInfo() {
+	return this->ExecuteCommand("getDeviceInfos");
+}
+
 Device::Device() {
 }
 

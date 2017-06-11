@@ -14,10 +14,12 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Command.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommandParser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ConsoleLogger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Device.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandler.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.h" />
@@ -25,7 +27,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Command.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CommandParser.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Device.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandler.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.cpp" />

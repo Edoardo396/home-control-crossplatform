@@ -7,16 +7,20 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandler.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CommandParser.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Device.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Command.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ConsoleLogger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandler.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommandParser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.h" />
   </ItemGroup>
 </Project>

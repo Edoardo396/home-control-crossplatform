@@ -2,13 +2,6 @@
 #include "MyRequestHandlerFactory.h"
 #include "MyRequestHandler.h"
 
-
-MyRequestHandlerFactory::MyRequestHandlerFactory() {
-
-
-}
-
-
 MyRequestHandlerFactory::~MyRequestHandlerFactory() {
 }
 
