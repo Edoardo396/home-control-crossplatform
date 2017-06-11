@@ -4,7 +4,9 @@
 #include "Command.h"
 #include "ConsoleLogger.h"
 #include "Poco/Format.h"
+#include <boost/format.hpp>
 
+std::list<Device*>* Device::devices;
 
 std::string Device::ExecuteCommand(std::string request) const {
 	return Command::ExecuteGETRequest(ipAddress, port, request);
@@ -53,12 +55,12 @@ bool Device::CheckReachability() {
 	try {
 		auto cmd = Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir("ping"));
 	} catch(std::exception& e) {
-		ConsoleLogger::Write(Poco::format("Device %d is not reachable anymore. %d", displayName, e.what()), LogType::Error);
+		ConsoleLogger::Write((boost::format("Device %1% is not reachable. %2%") % name % e.what()).str(), LogType::Error);
 		state = State::NotReachable;
 		return false;
 	}
 
-	ConsoleLogger::Write(Poco::format("Device %d reached successfully.", displayName), LogType::Error);
+	ConsoleLogger::Write((boost::format("Device %1% reached successfully.") % name).str(), LogType::Message);
 	state = State::Reachable;
 	return true;
 }
@@ -74,10 +76,6 @@ void Device::SetOff() {
 std::string Device::GetDeviceInfo() {
 	return this->ExecuteCommand("getDeviceInfos");
 }
-
-Device::Device() {
-}
-
 
 Device::~Device() {
 

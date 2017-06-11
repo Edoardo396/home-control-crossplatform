@@ -1,7 +1,6 @@
 #pragma once
 
 #define OUT
-#define XmlFilePath "C:\Users\edoardo.fullin\Desktop\Database\HomeControlDB.xml"
 const int port = 8080;
 #define ABSTRACT
 
@@ -30,5 +29,7 @@ typedef std::map<std::string, std::string> Dictionary;
 
 #define BOLD(x) "\x1B[1m" x RST
 #define UNDL(x) "\x1B[4m" x RST
+
+#define DEVXMLTEXTOF(X) device->getNodeByPath(#X)->innerText()
 
 #endif  /* _COLORS_ */

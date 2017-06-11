@@ -7,8 +7,9 @@
 
 class Device : public IParsable {
 
+public:
 	enum class Location {
-		Device,
+		Device = 0,
 		Server,
 		Manual
 	};
@@ -22,27 +23,37 @@ class Device : public IParsable {
 		Unknown
 	};
 
+private:
 	State state = State::Unknown;
 	Poco::Net::IPAddress ipAddress;
 	int requiredAccessLevel;
 	int port;
 	std::string displayName;
+	std::string name;
 
 public:
 
 	static std::list<Device*>* devices;
 
-	Device(State state, const Poco::Net::IPAddress& ip_address, int required_access_level, int port, const std::string& display_name)
+	Device(const std::string& name, const Poco::Net::IPAddress& ip_address, int required_access_level, int port, const std::string& display_name, State state)
 		: state(state),
 		  ipAddress(ip_address),
 		  requiredAccessLevel(required_access_level),
 		  port(port),
-		  displayName(display_name) {
+		  displayName(display_name),
+		  name(name) {
 	}
+
+
+	Device(const std::string& name, const Poco::Net::IPAddress& ip_address, int required_access_level, int port)
+		: ipAddress(ip_address),
+		  requiredAccessLevel(required_access_level),
+		  port(port),
+		name(name) { this->CheckReachability(); }
 
 protected:
 	std::string ExecuteCommand(std::string request) const;
-	std::string ExecuteCommand(std::map<std::string,std::string> request) const;
+	std::string ExecuteCommand(std::map<std::string, std::string> request) const;
 
 
 public:
@@ -55,8 +66,5 @@ public:
 	virtual std::string GetDeviceInfo();
 
 
-	Device();
 	~Device();
-
 };
-
