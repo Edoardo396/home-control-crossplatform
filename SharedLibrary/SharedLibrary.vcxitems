@@ -19,11 +19,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CommandParser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ConsoleLogger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Device.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Enum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandler.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ServerDevice.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +36,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandler.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyServerApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ServerDevice.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp" />
   </ItemGroup>
 </Project>

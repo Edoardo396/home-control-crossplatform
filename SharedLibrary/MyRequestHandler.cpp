@@ -10,6 +10,8 @@
 #include <boost/algorithm/string.hpp>
 #include "User.h"
 #include <boost/format.hpp>
+#include "Device.h"
+#include <algorithm>
 
 MyRequestHandler::~MyRequestHandler() {
 }
@@ -23,7 +25,7 @@ void MyRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco
 
 	std::ostream& out = response.send();
 
-	map<string, string> params = ParseUri(request.getURI());
+	Dictionary params = ParseUri(request.getURI());
 
 	User invoker = User::Login(params["username"], params["password"]);
 
@@ -33,6 +35,18 @@ void MyRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco
 		% params["device"] 
 		% request.clientAddress().toString()).str(), LogType::Message);
 
+	// TODO Check for const!
+	auto match = std::find_if(Device::devices->begin(), Device::devices->end(), [&params](const Device* dev) {return dev->getName() == params["device"]; });
+	
+	if(match == Device::devices->end()) {
+		out << "Target not found";
+		return;
+	}
+
+	Device* target = *match;
+
+	target->ParseCommand(params["request"], params, invoker);
+	
 	if(invoker.getId() == User::ANONYMOUS.getId()) {
 		out << "Unautorized";
 		return;

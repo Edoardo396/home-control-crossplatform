@@ -1,11 +1,12 @@
 #pragma once
 #include <string>
+#include "Macros.h"
 
 class IParsable {
 public:
 	virtual ~IParsable() = default;
 	 IParsable(){}
 
-	virtual std::string ParseCommand(std::string request, std::vector<std::string> parms) = 0;
+	virtual std::string ParseCommand(std::string request, Dictionary parms, class User invoker) = 0;
 
 };

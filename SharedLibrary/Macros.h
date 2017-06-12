@@ -4,9 +4,6 @@
 const int port = 8080;
 #define ABSTRACT
 
-#ifndef _COLORS_
-#define _COLORS_
-
 typedef std::map<std::string, std::string> Dictionary;
 
 /* FOREGROUND */
@@ -31,5 +28,4 @@ typedef std::map<std::string, std::string> Dictionary;
 #define UNDL(x) "\x1B[4m" x RST
 
 #define DEVXMLTEXTOF(X) device->getNodeByPath(#X)->innerText()
-
-#endif  /* _COLORS_ */
+#define XMLTEXTOF(X, Y) Y->getNodeByPath(#X)->innerText()

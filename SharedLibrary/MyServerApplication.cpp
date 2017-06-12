@@ -18,6 +18,7 @@
 #include "ArduinoUnlocker.h"
 #include "Macros.h"
 #include <boost/format.hpp>
+#include "ServerDevice.h"
 
 using std::cout;
 using std::endl;
@@ -27,7 +28,11 @@ MyServerApplication::MyServerApplication() {
 
 
 MyServerApplication::~MyServerApplication() {
+
+	Device::devices->erase(Device::devices->begin(), Device::devices->end());
 	delete Device::devices;
+
+	User::users->erase(User::users->begin(), User::users->end());
 	delete User::users;
 }
 
@@ -52,19 +57,17 @@ auto MyServerApplication::ReloadDevicesFromXML() {
 
 		DVLOAD devtmp = { DEVXMLTEXTOF(/Type), DEVXMLTEXTOF(/DisplayName), DEVXMLTEXTOF(/Nome), std::stoi(DEVXMLTEXTOF(/RAL)), std::stoi(DEVXMLTEXTOF(/Port)), Poco::Net::IPAddress::parse(DEVXMLTEXTOF(/IPAddress)) };
 
-		if (devtmp.type == "unlocker")
+		if (devtmp.type == "ArduinoUnlocker")
 			devlist->push_back(new ArduinoUnlocker(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port));
 		else
-			ConsoleLogger::Write((boost::format("Not recognized type of %1%") % devtmp.name).str(), LogType::Warning);
+			ConsoleLogger::Write((boost::format("Not recognized type \"%1%\" of %2%") % devtmp.type % devtmp.name).str(), LogType::Warning);
 
 #pragma endregion 
 
 	
 	}
 
-
-
-
+	devlist->push_back(new ServerDevice("ServerSelf", Poco::Net::IPAddress(std::string("::1"), Poco::Net::IPAddress::IPv6), 0, 8080));
 
 	return devlist;
 }

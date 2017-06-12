@@ -4,6 +4,7 @@
 #include "IParsable.hpp"
 #include "Macros.h"
 #include <list>
+#include "Enum.h"
 
 class Device : public IParsable {
 
@@ -14,6 +15,7 @@ public:
 		Manual
 	};
 
+	
 	enum class State {
 		Off = 0,
 		On,
@@ -23,7 +25,22 @@ public:
 		Unknown
 	};
 
-private:
+	static inline std::string StringState(State s) { return statesStr[s]; }
+
+	/*
+	ENUM(State, char, Off = 0,
+		On,
+		NotReachable,
+		Reachable,
+		Operating,
+		Unknown
+	);
+	*/
+
+protected:
+
+	static std::map<State, std::string> statesStr;
+
 	State state = State::Unknown;
 	Poco::Net::IPAddress ipAddress;
 	int requiredAccessLevel;
@@ -33,6 +50,8 @@ private:
 
 public:
 
+
+	std::string getName() const { return name; }
 	static std::list<Device*>* devices;
 
 	Device(const std::string& name, const Poco::Net::IPAddress& ip_address, int required_access_level, int port, const std::string& display_name, State state)
@@ -57,14 +76,15 @@ protected:
 
 
 public:
-	virtual std::string ParseCommand(std::string request, std::vector<std::string> parms) override;
+	virtual std::string ParseCommand(std::string request, Dictionary parms, User invoker) override;
 	bool Ping() const;
 	bool CheckReachability();
 
-	virtual void SetOn();
-	virtual void SetOff();
-	virtual std::string GetDeviceInfo();
+	virtual void SetOn() const;
+	virtual void SetOff() const;
+	virtual std::string GetDeviceInfo() const;
 
+	virtual std::string ToString() const;
 
 	~Device();
 };

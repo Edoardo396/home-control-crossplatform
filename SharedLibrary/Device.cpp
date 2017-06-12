@@ -5,8 +5,10 @@
 #include "ConsoleLogger.h"
 #include "Poco/Format.h"
 #include <boost/format.hpp>
+#include "User.h"
 
 std::list<Device*>* Device::devices;
+std::map<Device::State, std::string> Device::statesStr = { { State::Off, "Off" },{ State::On, "On" },{ State::NotReachable, "NotReachable" },{ State::Reachable, "Reachable" },{ State::Operating, "Operating" },{ State::Unknown, "Unknown" } };
 
 std::string Device::ExecuteCommand(std::string request) const {
 	return Command::ExecuteGETRequest(ipAddress, port, request);
@@ -17,7 +19,7 @@ std::string Device::ExecuteCommand(std::map<std::string, std::string> request) c
 	return Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir(request));
 }
 
-std::string Device::ParseCommand(std::string request, std::vector<std::string> parms) {
+std::string Device::ParseCommand(std::string request, Dictionary parms, User invoker) {
 
 	// TODO Autmator
 
@@ -65,16 +67,20 @@ bool Device::CheckReachability() {
 	return true;
 }
 
-void Device::SetOn() {
+void Device::SetOn() const {
 	this->ExecuteCommand("setOn");
 }
 
-void Device::SetOff() {
+void Device::SetOff() const {
 	this->ExecuteCommand("setOff");
 }
 
-std::string Device::GetDeviceInfo() {
+std::string Device::GetDeviceInfo() const {
 	return this->ExecuteCommand("getDeviceInfos");
+}
+
+std::string Device::ToString() const {
+	return (boost::format("%1% %2% %3% %4% %5%") % name % displayName % ipAddress.toString() % port % statesStr[state]).str();
 }
 
 Device::~Device() {

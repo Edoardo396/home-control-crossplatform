@@ -9,7 +9,7 @@ public:
 
 	std::string Unlock() const;
 
-	std::string ParseCommand(std::string request, std::vector<std::string> parms) override;
+	std::string ParseCommand(std::string request, Dictionary parms, class User invoker) override;
 
 
 
