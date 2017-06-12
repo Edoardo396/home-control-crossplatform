@@ -10,6 +10,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CommandParser.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ServerDevice.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DaikinAC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h" />
@@ -25,5 +26,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ServerDevice.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DaikinAC.h" />
   </ItemGroup>
 </Project>

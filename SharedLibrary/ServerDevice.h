@@ -10,9 +10,9 @@ class ServerDevice : public Device {
 
 	std::string ParseCommand(std::string request, Dictionary parms, class User invoker) override;
 
-	void SetOn() const override;
+	void SetOn() override;
 
-	void SetOff() const override;
+	void SetOff() override;
 
 	std::string GetDeviceInfo() const override;
 

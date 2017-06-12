@@ -19,6 +19,7 @@
 #include "Macros.h"
 #include <boost/format.hpp>
 #include "ServerDevice.h"
+#include "DaikinAC.h"
 
 using std::cout;
 using std::endl;
@@ -59,6 +60,8 @@ auto MyServerApplication::ReloadDevicesFromXML() {
 
 		if (devtmp.type == "ArduinoUnlocker")
 			devlist->push_back(new ArduinoUnlocker(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port));
+		else if (devtmp.type == "DaikinAC")
+			devlist->push_back(new DaikinAC(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port));
 		else
 			ConsoleLogger::Write((boost::format("Not recognized type \"%1%\" of %2%") % devtmp.type % devtmp.name).str(), LogType::Warning);
 
@@ -67,7 +70,7 @@ auto MyServerApplication::ReloadDevicesFromXML() {
 	
 	}
 
-	devlist->push_back(new ServerDevice("ServerSelf", Poco::Net::IPAddress(std::string("::1"), Poco::Net::IPAddress::IPv6), 0, 8080));
+	devlist->push_back(new ServerDevice("ServerSelf", Poco::Net::IPAddress(std::string("::1"), Poco::Net::IPAddress::IPv6), 0, 8080, "Server", Device::State::Reachable));
 
 	return devlist;
 }

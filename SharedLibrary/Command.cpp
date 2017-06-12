@@ -4,6 +4,7 @@
 #include <Poco/Net/HTTPClientSession.h>
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
+#include "Macros.h"
 
 std::string Command::GetCommandDir(std::map<std::string, std::string> values) {
 
@@ -58,9 +59,19 @@ std::string Command::ExecutePOSTRequest(Poco::Net::IPAddress IP, int port, std::
 
 	auto request = new HTTPRequest(HTTPRequest::HTTP_POST, dir, HTTPMessage::HTTP_1_1);
 
-	for (auto pair : values) request->add(pair.first, pair.second);
+	request->setContentType("application/x-www-form-urlencoded");
 
-	clientSession->sendRequest(*request);
+	std::string requeststr = "";
+
+	for (Dictionary::iterator it = values.begin();
+		it != values.end(); it++) {
+		requeststr += (it->first + "=" + it->second + "&");
+	}
+
+	requeststr.erase(requeststr.size() - 1, 1);
+
+	std::ostream& os = clientSession->sendRequest(*request);
+	os << "";
 
 	HTTPResponse response;
 

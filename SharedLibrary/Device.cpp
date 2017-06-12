@@ -67,11 +67,11 @@ bool Device::CheckReachability() {
 	return true;
 }
 
-void Device::SetOn() const {
+void Device::SetOn() {
 	this->ExecuteCommand("setOn");
 }
 
-void Device::SetOff() const {
+void Device::SetOff() {
 	this->ExecuteCommand("setOff");
 }
 

@@ -15,7 +15,7 @@ public:
 		Manual
 	};
 
-	
+
 	enum class State {
 		Off = 0,
 		On,
@@ -38,6 +38,11 @@ public:
 	*/
 
 protected:
+
+	bool IsOK() const {
+		return state == State::On || state == State::Reachable ||
+			state == State::Operating;
+	}
 
 	static std::map<State, std::string> statesStr;
 
@@ -68,7 +73,7 @@ public:
 		: ipAddress(ip_address),
 		  requiredAccessLevel(required_access_level),
 		  port(port),
-		name(name) { this->CheckReachability(); }
+		  name(name) { this->CheckReachability(); }
 
 protected:
 	std::string ExecuteCommand(std::string request) const;
@@ -80,8 +85,8 @@ public:
 	bool Ping() const;
 	bool CheckReachability();
 
-	virtual void SetOn() const;
-	virtual void SetOff() const;
+	virtual void SetOn();
+	virtual void SetOff();
 	virtual std::string GetDeviceInfo() const;
 
 	virtual std::string ToString() const;
