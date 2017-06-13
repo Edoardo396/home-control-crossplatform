@@ -2,14 +2,15 @@
 #include "Device.h"
 
 class DaikinAC : public Device {
-
-	typedef Device Super;
+public:
 
 	enum class Mode { Auto, Dry, Cold, Hot, Fan };
+	enum class FanSpeed { Auto, Silence, L1, L2, L3, L4, L5 };
+
+private:
+	typedef Device Super;
 
 	static std::map<Mode, std::string> modeStr;
-
-	enum class FanSpeed { Auto, Silence, L1, L2, L3, L4, L5 };
 
 	static std::map<FanSpeed, std::string> fanSpeedStr;
 
@@ -18,7 +19,6 @@ class DaikinAC : public Device {
 	FanSpeed fanSpeed;
 	Mode opMode;
 
-private:
 #pragma region Converters
 	std::string IDFromThisFDIR() const {
 		if (swingX && swingY)
@@ -124,10 +124,18 @@ private:
 	}
 #pragma endregion
 
+	void PullControlData();
+	void PullSensorData();
+
+	template <class Key, class Value>
+	Key GetKeyByValueInMap(std::map<Key, Value> map, Value val);
+
 protected:
 
 	void PullData();
 	void PushData();
+
+	std::string getAllInfos();
 
 public:
 

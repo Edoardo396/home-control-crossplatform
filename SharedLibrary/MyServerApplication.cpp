@@ -24,6 +24,8 @@
 using std::cout;
 using std::endl;
 
+
+std::string const MyServerApplication::filePath = "C:\\Users\\edoardo.fullin\\Desktop\\Database\\HomeControlDB.xml";
 MyServerApplication::MyServerApplication() {
 }
 
@@ -37,7 +39,7 @@ MyServerApplication::~MyServerApplication() {
 	delete User::users;
 }
 
-auto MyServerApplication::ReloadDevicesFromXML() {
+std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
 
 	using namespace Poco::XML;
 
@@ -76,7 +78,7 @@ auto MyServerApplication::ReloadDevicesFromXML() {
 }
 
 // TODO rewrite better
-auto MyServerApplication::ReloadUsersFromXML() {
+std::list<User>* MyServerApplication::ReloadUsersFromXML() {
 
 	using namespace Poco::XML;
 

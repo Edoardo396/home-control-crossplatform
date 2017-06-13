@@ -73,7 +73,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\build\boost\bin.v2\libs;C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\stage\lib;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include;$(SourcePath)</SourcePath>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;</IncludePath>
   </PropertyGroup>
@@ -99,6 +99,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>PocoFoundationd.lib;PocoXMLd.lib;PocoUtild.lib;PocoNetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\stage\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -26,7 +26,8 @@ public:
 	}
 
 	static User Login(std::string username, std::string password);
-	static std::list<User>* users;
+    std::vector<class Device> GetMyDevices() const;
+    static std::list<User>* users;
 
 	friend std::ostream& operator<<(std::ostream& os, const User& obj) {
 		return os

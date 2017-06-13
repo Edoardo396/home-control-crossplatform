@@ -48,7 +48,7 @@ std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::s
 	return sresponse;
 }
 
-std::string Command::ExecutePOSTRequest(Poco::Net::IPAddress IP, int port, std::string dir, std::map<std::string, std::string> values) {
+std::string Command::ExecutePOSTRequest(Poco::Net::IPAddress IP, int port, std::string dir, std::vector<std::pair<std::string, std::string>> values) {
 
 
 	using namespace Poco::Net;
@@ -59,19 +59,19 @@ std::string Command::ExecutePOSTRequest(Poco::Net::IPAddress IP, int port, std::
 
 	auto request = new HTTPRequest(HTTPRequest::HTTP_POST, dir, HTTPMessage::HTTP_1_1);
 
-	request->setContentType("application/x-www-form-urlencoded");
+	request->setContentType("raw");
 
 	std::string requeststr = "";
 
-	for (Dictionary::iterator it = values.begin();
-		it != values.end(); it++) {
+	for (auto it = values.begin(); it != values.end(); ++it) {
 		requeststr += (it->first + "=" + it->second + "&");
 	}
 
 	requeststr.erase(requeststr.size() - 1, 1);
 
-	std::ostream& os = clientSession->sendRequest(*request);
-	os << "";
+	request->setContentLength(requeststr.length());
+
+	clientSession->sendRequest(*request) << requeststr;
 
 	HTTPResponse response;
 

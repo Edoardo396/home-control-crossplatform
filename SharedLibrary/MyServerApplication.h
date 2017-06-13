@@ -14,9 +14,10 @@ class MyServerApplication : public Poco::Util::ServerApplication {
 		Poco::Net::IPAddress ipaddr;
 	};
 
+    friend class ServerDevice;
 
 private:
-	const std::string filePath = "C:\\Users\\edoardo.fullin\\Desktop\\Database\\HomeControlDB.xml";
+    static const std::string filePath;
 
 public:
 	MyServerApplication();
@@ -24,7 +25,7 @@ public:
 protected:
 	int main(const std::vector<std::string> &) override;
 
-	auto ReloadDevicesFromXML();
-	auto ReloadUsersFromXML();
+	static std::list<Device*>* ReloadDevicesFromXML();
+	static std::list<User>* ReloadUsersFromXML();
 };
 

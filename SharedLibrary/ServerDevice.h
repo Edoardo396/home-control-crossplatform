@@ -24,6 +24,8 @@ class ServerDevice : public Device {
 		: Device(name, ip_address, required_access_level, port) {
 	}
 
+    void UpdateDB();
+
 	~ServerDevice();
 };
 

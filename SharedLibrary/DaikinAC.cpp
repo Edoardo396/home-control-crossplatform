@@ -1,64 +1,149 @@
 #include "../HomeControlController (Windows)/stdafx.h"
 #include "DaikinAC.h"
 #include "Command.h"
+#include <map>
 #include <boost/algorithm/string.hpp>
 #include <future>
 #include "User.h"
+#include "Macros.h"
+#include <boost/format.hpp>
 
+std::map<DaikinAC::Mode, std::string> DaikinAC::modeStr = {{DaikinAC::Mode::Auto, "Auto"},
+    {DaikinAC::Mode::Dry, "Dry"},
+    {DaikinAC::Mode::Cold, "Cold"},
+    {DaikinAC::Mode::Hot, "Hot"},
+    {DaikinAC::Mode::Fan, "Fan"}};
+
+std::map<DaikinAC::FanSpeed, std::string> DaikinAC::fanSpeedStr = {{DaikinAC::FanSpeed::Auto, "Auto"},{DaikinAC::FanSpeed::Silence, "Silence"},{DaikinAC::FanSpeed::L1, "L1"},{DaikinAC::FanSpeed::L2, "L2"},{DaikinAC::FanSpeed::L3, "L3"},{DaikinAC::FanSpeed::L4, "L4"},{DaikinAC::FanSpeed::L5, "L5"},};
+
+void DaikinAC::PullControlData() {
+    using std::string;
+
+    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_control_info");
+
+    auto dict = Dictionary();
+
+    std::vector<string> strs;
+    boost::split(strs, response, boost::is_any_of(",="));
+
+    for (int i = 0; i < strs.size() - 1; i += 2)
+        dict.insert(std::pair<string, string>(strs[i], strs[i + 1]));
+
+    this->state = dict["pow"] == "1" ? State::Operating : State::Off;
+    this->opMode = ModeFromID(std::stoi(dict["mode"]));
+    this->myTemperature = dict["stemp"] != "M" ? std::stof(dict["stemp"]) : -1.f;
+    this->fanSpeed = FanFromID(dict["f_rate"]);
+    this->SetSwingDir(dict["f_dir"]);
+}
+
+void DaikinAC::PullSensorData() {
+    using std::string;
+
+    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_sensor_info");
+
+    auto dict = Dictionary();
+
+    std::vector<string> strs;
+    boost::split(strs, response, boost::is_any_of(",="));
+
+    for (int i = 0; i < strs.size() - 1; i += 2)
+        dict.insert(std::pair<string, string>(strs[i], strs[i + 1]));
+
+    this->internalTemperature = stof(dict["htemp"]);
+    this->externalTemperature = stof(dict["otemp"]);
+}
 
 void DaikinAC::PullData() {
-	using std::string;
-
-	string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_control_info");
-
-	auto dict = Dictionary();
-
-	std::vector<string> strs;
-	boost::split(strs, response, boost::is_any_of(",="));
-
-	for (int i = 0; i < strs.size() - 1; i += 2)
-		dict.insert(std::pair<string, string>(strs[i], strs[i + 1]));
-
-	this->state = dict["pow"] == "1" ? State::Operating : State::Off;
-	this->opMode = ModeFromID(std::stoi(dict["mode"]));
-	this->myTemperature = dict["stemp"] != "M" ? std::stof(dict["stemp"]) : -1.f;
-	this->fanSpeed = FanFromID(dict["f_rate"]);
-	this->SetSwingDir(dict["f_dir"]);
+    PullControlData();
+    PullSensorData();
 }
 
 void DaikinAC::PushData() {
-	std::async([this]() {
-		Command::ExecutePOSTRequest(ipAddress, port, "aircon/set_control_info", { 
-		{ "pow", this->state == State::Operating ? "1" : "0" },   // 4th parameter is Dictionary
-		{ "mode", this->IDFromMode(this->opMode) },
-		{ "stemp", std::to_string(myTemperature) },
-		{ "shum", "0" },{ "f_rate", this->IDFromFRATE(this->fanSpeed) },
-		{ "f_dir", this->IDFromThisFDIR() } 
-		}); 
-	});
+    std::async([this]() {
+        Command::ExecutePOSTRequest(ipAddress, port, "aircon/set_control_info", {
+                                        {"pow", this->state == State::Operating ? "1" : "0"}, // 4th parameter is Dictionary
+                                        {"mode", this->IDFromMode(this->opMode)},
+                                        {"stemp", boost::str(boost::format("%d") % myTemperature)},
+                                        {"shum", "0"},
+                                        {"f_rate", this->IDFromFRATE(this->fanSpeed)},
+                                        {"f_dir", this->IDFromThisFDIR()}
+                                    });
+    });
 }
 
+std::string DaikinAC::getAllInfos() { return std::string(); }
+
 std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User invoker) {
-	return Super::ParseCommand(request, parms, invoker);
+    auto baseResponse = Super::ParseCommand(request, parms, invoker);
+
+    if (request == "getAllInfos") return this->getAllInfos();
+    if (request == "getMyTemp") return boost::str(boost::format("%d") % myTemperature);
+    if (request == "getOpMode") return this->modeStr[opMode];
+    if (request == "getFanSpeed") return this->fanSpeedStr[fanSpeed];
+    if (request == "getSwingX") return std::to_string(this->swingX); // TODO USE BITWISE
+    if (request == "getSwingY") return std::to_string(this->swingY);
+    if (request == "getTemp") return FLOATTOSTR(internalTemperature);
+    if (request == "getExtTemp") return FLOATTOSTR(externalTemperature);
+
+    if (request == "setTemp") {
+        this->myTemperature = std::stof(parms["p0"]);
+        PushData(); // TODO check if switich to another thread worth
+        return "true";
+    }
+
+    if (request == "setSwingX") {
+        this->swingX = parms["p0"] == "1";
+        PushData();
+        return "true";
+    }
+
+    if (request == "setSwingY") {
+        this->swingY = parms["p0"] == "1";
+        PushData();
+        return "true";
+    }
+
+    if (request == "setOpMode") {
+        this->opMode = GetKeyByValueInMap(modeStr, parms["p0"]);
+        PushData();
+        return "true";
+    }
+
+    if(request == "setFanSpeed") {
+        this->fanSpeed = GetKeyByValueInMap(fanSpeedStr, parms["p0"]);
+        PushData();
+        return "true";
+    }
 }
 
 void DaikinAC::SetOn() {
-	this->state = State::Operating;
+    this->state = State::Operating;
 
-	std::async([this]() {
-		PushData();
-		PullData();
-	});
+    std::async([this]() {
+        PushData();
+        PullData();
+    });
 }
 
 void DaikinAC::SetOff() {
-	this->state = State::Off;
+    this->state = State::Off;
 
-	std::async([this]() {
-		PushData();
-		PullData();
-	});
+    std::async([this]() {
+        PushData();
+        PullData();
+    });
 }
+
+
+template <class Key, class Value>
+Key DaikinAC::GetKeyByValueInMap(std::map<Key, Value> map, Value val) { {
+        for (auto it = map.begin(); it != map.end(); ++it) {
+            if (it->second == val)
+                return it->first;
+        }
+    }
+}
+
 
 DaikinAC::~DaikinAC() {
 }

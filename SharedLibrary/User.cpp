@@ -2,6 +2,7 @@
 #include "User.h"
 #include <string>
 #include <algorithm>
+#include "Device.h"
 
 // Static Members
 
@@ -14,6 +15,18 @@ User User::Login(std::string username, std::string password) {
 	auto user = std::find_if(User::users->begin(), User::users->end(), [username, password](const User& u) {return u.getName() == username && u.getPassword() == password; });
 
 	return user != users->end() ? *user : User(-1, "Anonymous", "", 0);
+}
+
+std::vector<Device> User::GetMyDevices() const {
+    auto rtn = std::vector<Device>();
+
+    for(auto it = Device::devices->begin(); it != Device::devices->end(); ++it) {
+        const Device* dev = *it;
+        if (dev->getRequiredAccessLevel() <= accessLevel && dev->getState() != Device::State::NotReachable && dev->getState() != Device::State::Unknown)
+            rtn.push_back(*dev);
+    }
+
+    return rtn;
 }
 
 std::string User::ToString() const {

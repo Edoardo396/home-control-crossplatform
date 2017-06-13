@@ -37,8 +37,14 @@ public:
 	);
 	*/
 
-protected:
+public:
 
+    static std::string SerializeListDevDisp(std::vector<Device> vector);
+
+    State getState() const { return state; }
+    int getRequiredAccessLevel() const { return requiredAccessLevel; }
+
+protected:
 	bool IsOK() const {
 		return state == State::On || state == State::Reachable ||
 			state == State::Operating;
