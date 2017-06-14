@@ -39,7 +39,7 @@ public:
 
 public:
 
-    static std::string SerializeListDevDisp(std::vector<Device> vector);
+    static std::string SerializeListDevDisp(std::vector<const Device*> vector);
 
     State getState() const { return state; }
     int getRequiredAccessLevel() const { return requiredAccessLevel; }

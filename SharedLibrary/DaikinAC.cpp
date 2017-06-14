@@ -76,6 +76,9 @@ std::string DaikinAC::getAllInfos() { return std::string(); }
 std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User invoker) {
     auto baseResponse = Super::ParseCommand(request, parms, invoker);
 
+    if (baseResponse != "false")
+        return baseResponse;
+
     if (request == "getAllInfos") return this->getAllInfos();
     if (request == "getMyTemp") return boost::str(boost::format("%d") % myTemperature);
     if (request == "getOpMode") return this->modeStr[opMode];

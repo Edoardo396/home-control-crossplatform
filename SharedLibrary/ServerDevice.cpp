@@ -8,6 +8,12 @@
 #include <boost/timer/timer.hpp>
 #include <boost/format.hpp>
 
+#if defined(LINUX_x86) || defined(LINUX_x64)
+#include <linux/reboot.h>
+#include <sys/reboot.h>
+#endif
+
+
 std::string ServerDevice::ParseCommand(std::string request, Dictionary parms, User invoker) {
 	
     if (request == "ping")
@@ -23,7 +29,7 @@ std::string ServerDevice::ParseCommand(std::string request, Dictionary parms, Us
         this->SetOff();
         return "true";
     }
-
+    
     if(request == "update-db" && invoker.getAccessLevel() >= 60) {
         this->UpdateDB();
         return "true";
@@ -38,7 +44,19 @@ void ServerDevice::SetOn() {
 
 void ServerDevice::SetOff() {
 	ConsoleLogger::Write("Shutting Down", LogType::Message);
+
+#if defined(LINUX_x86) || defined(LINUX_x64)
+    sync();
+    reboot(LINUX_REBOOT_CMD_POWER_OFF);
+    return;
+#endif
+
+#if defined(WIN32) || defined(WIN64)
 	system("shutdown -s -f -t 0 -c \"Shutdown by HomeControl\"");
+    return;
+#endif
+
+    ConsoleLogger::Write("Could not shutdown, check the compilation directives.", LogType::Error);
 }
 
 std::string ServerDevice::GetDeviceInfo() const {

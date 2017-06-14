@@ -6,16 +6,19 @@
 #include "Poco/Format.h"
 #include <boost/format.hpp>
 #include "User.h"
+#include <typeinfo>
 
 std::list<Device*>* Device::devices;
 std::map<Device::State, std::string> Device::statesStr = {{State::Off, "Off"},{State::On, "On"},{State::NotReachable, "NotReachable"},{State::Reachable, "Reachable"},{State::Operating, "Operating"},{State::Unknown, "Unknown"}};
 
-std::string Device::SerializeListDevDisp(std::vector<Device> vector) {
+std::string Device::SerializeListDevDisp(std::vector<const Device*> vector) {
     auto rtn = std::string();
 
-    for (Device it : vector) {
-        rtn += it.getName() + "-";
-        rtn += std::string(typeid(it).name()) + ";";
+    for (const Device* it : vector) {
+        rtn += it->getName() + "-";
+        std::string type = std::string(typeid(*it).name());
+
+        rtn += type.erase(0, type.find(32) + 1) + ";";
     }
 
     rtn.erase(rtn.size() - 1, 1);

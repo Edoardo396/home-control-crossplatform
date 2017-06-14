@@ -45,7 +45,7 @@ void MyRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco
 
 	Device* target = *match;
 
-	target->ParseCommand(params["request"], params, invoker);
+    out << target->ParseCommand(params["request"], params, invoker);
 	
 	if(invoker.getId() == User::ANONYMOUS.getId()) {
 		out << "Unautorized";

@@ -17,13 +17,13 @@ User User::Login(std::string username, std::string password) {
 	return user != users->end() ? *user : User(-1, "Anonymous", "", 0);
 }
 
-std::vector<Device> User::GetMyDevices() const {
-    auto rtn = std::vector<Device>();
+std::vector<const Device*> User::GetMyDevices() const {
+    auto rtn = std::vector<const Device*>();
 
     for(auto it = Device::devices->begin(); it != Device::devices->end(); ++it) {
-        const Device* dev = *it;
-        if (dev->getRequiredAccessLevel() <= accessLevel && dev->getState() != Device::State::NotReachable && dev->getState() != Device::State::Unknown)
-            rtn.push_back(*dev);
+        Device* dev = *it;
+        if (dev->getRequiredAccessLevel() <= accessLevel && dev->getState() != Device::State::NotReachable && dev->getState() != Device::State::Unknown && dev->getName() != "ServerSelf")
+            rtn.push_back(dev);
     }
 
     return rtn;
