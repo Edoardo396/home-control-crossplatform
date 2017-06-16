@@ -59,16 +59,14 @@ void DaikinAC::PullData() {
 }
 
 void DaikinAC::PushData() {
-    std::async([this]() {
-        Command::ExecutePOSTRequest(ipAddress, port, "aircon/set_control_info", {
-                                        {"pow", this->state == State::Operating ? "1" : "0"}, // 4th parameter is Dictionary
-                                        {"mode", this->IDFromMode(this->opMode)},
-                                        {"stemp", boost::str(boost::format("%d") % myTemperature)},
-                                        {"shum", "0"},
-                                        {"f_rate", this->IDFromFRATE(this->fanSpeed)},
-                                        {"f_dir", this->IDFromThisFDIR()}
-                                    });
-    });
+    Command::ExecutePOSTRequest(ipAddress, port, "aircon/set_control_info", {
+                                    {"pow", this->state == State::Operating ? "1" : "0"}, // 4th parameter is Dictionary
+                                    {"mode", this->IDFromMode(this->opMode)},
+                                    {"stemp", boost::str(boost::format("%d") % myTemperature)},
+                                    {"shum", "0"},
+                                    {"f_rate", this->IDFromFRATE(this->fanSpeed)},
+                                    {"f_dir", this->IDFromThisFDIR()}
+                                });
 }
 
 
@@ -112,7 +110,7 @@ std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User i
         return "true";
     }
 
-    if(request == "setFanSpeed") {
+    if (request == "setFanSpeed") {
         this->fanSpeed = GetKeyByValueInMap(fanSpeedStr, parms["p0"]);
         PushData();
         return "true";
@@ -122,29 +120,28 @@ std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User i
 void DaikinAC::SetOn() {
     this->state = State::Operating;
 
-    std::async([this]() {
-        PushData();
-        PullData();
-    });
+    PushData();
+
+    std::async([this]() { PullData(); });
 }
 
 void DaikinAC::SetOff() {
     this->state = State::Off;
 
-    std::async([this]() {
-        PushData();
-        PullData();
-    });
+    PushData();
+
+    std::async([this]() { PullData(); });
 }
 
 
 template <class Key, class Value>
-Key DaikinAC::GetKeyByValueInMap(std::map<Key, Value> map, Value val) { {
-        for (auto it = map.begin(); it != map.end(); ++it) {
-            if (it->second == val)
-                return it->first;
-        }
+Key DaikinAC::GetKeyByValueInMap(std::map<Key, Value> map, Value val) {
+    for (auto it = map.begin(); it != map.end(); ++it) {
+        if (it->second == val)
+            return it->first;
     }
+
+    throw std::exception("Item not found");
 }
 
 

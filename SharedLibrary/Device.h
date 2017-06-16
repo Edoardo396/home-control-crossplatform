@@ -1,10 +1,10 @@
 #pragma once
 
+
 #include <Poco/Net/IPAddress.h> // TODO Remove
 #include "IParsable.hpp"
 #include "Macros.h"
 #include <list>
-#include "Enum.h"
 
 class Device : public IParsable {
 

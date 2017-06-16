@@ -24,7 +24,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ConsoleLogger.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DaikinAC.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Device.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Enum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandler.h" />
@@ -34,9 +33,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\HomeControlController (Windows)\stdafx.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoTemperature.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>

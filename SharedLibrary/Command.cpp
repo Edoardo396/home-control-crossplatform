@@ -5,6 +5,7 @@
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
 #include "Macros.h"
+#include "ConsoleLogger.h"
 
 std::string Command::GetCommandDir(std::map<std::string, std::string> values) {
 
@@ -80,6 +81,8 @@ std::string Command::ExecutePOSTRequest(Poco::Net::IPAddress IP, int port, std::
 	std::istream& is = clientSession->receiveResponse(response);
 
 	auto sresponse = std::string(std::istreambuf_iterator<char>(is), {});
+
+//    ConsoleLogger::Write(IP.toString() + " response: " + sresponse, LogType::Message);
 
 	delete clientSession;
 	delete request;

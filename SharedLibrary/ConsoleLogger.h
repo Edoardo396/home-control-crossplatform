@@ -43,8 +43,20 @@ public:
 
 		// TODO Implement for linux
 #ifdef LINUX
-		if (type == LogType::Automator)
-			std::cout << FGRN("text") << std::endl;
+
+        std::string mess = enummsg + " " + text;
+
+        if (type == LogType::Automator)
+            printf("%s%s\n", KGRN, mess.c_str());
+        if (type == LogType::Warning)
+            printf("%s%s\n", KYEL, mess.c_str());
+        if (type == LogType::Error)
+            printf("%s%s\n", KRED, mess.c_str());
+        if (type == LogType::Message)
+            printf("%s%s\n", KCYN, mess.c_str());
+
+        printf(KWHT);
+        fflush(stdout);
 #endif
 
 #ifdef WIN32

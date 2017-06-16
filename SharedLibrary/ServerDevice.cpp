@@ -8,7 +8,7 @@
 #include <boost/timer/timer.hpp>
 #include <boost/format.hpp>
 
-#if defined(LINUX_x86) || defined(LINUX_x64)
+#ifdef LINUX    
 #include <linux/reboot.h>
 #include <sys/reboot.h>
 #endif
@@ -45,13 +45,13 @@ void ServerDevice::SetOn() {
 void ServerDevice::SetOff() {
 	ConsoleLogger::Write("Shutting Down", LogType::Message);
 
-#if defined(LINUX)
+#ifdef LINUX
     sync();
     reboot(LINUX_REBOOT_CMD_POWER_OFF);
     return;
 #endif
 
-#if defined(WIN32)
+#ifdef WIN32
 	system("shutdown -s -f -t 0 -c \"Shutdown by HomeControl\"");
     return;
 #endif

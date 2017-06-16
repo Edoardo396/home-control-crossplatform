@@ -1,4 +1,4 @@
-#include <cstdio>
+#include "../SharedLibrary/stdafx.h"
 #include "../SharedLibrary/MyServerApplication.h"
 #include "../SharedLibrary/ConsoleLogger.h"
 
