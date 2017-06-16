@@ -1,4 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "Command.h"
 #include <string>
 #include <Poco/Net/HTTPClientSession.h>
@@ -24,13 +24,15 @@ std::string Command::GetCommandDir(std::string request) {
 	return GetCommandDir(map);
 }
 
-std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::string dir) {
+std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::string dir, int timeout) {
 
 	using namespace Poco::Net;
 
 	std::string ip = IP.toString();
 
 	auto clientSession = new HTTPClientSession(ip, Poco::UInt16(port));
+
+    clientSession->setTimeout(Poco::Timespan(timeout, 0L));
 
 	auto request = new HTTPRequest(HTTPRequest::HTTP_GET, dir, HTTPMessage::HTTP_1_1);
 

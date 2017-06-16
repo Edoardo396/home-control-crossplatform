@@ -1,4 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "User.h"
 #include <string>
 #include <algorithm>

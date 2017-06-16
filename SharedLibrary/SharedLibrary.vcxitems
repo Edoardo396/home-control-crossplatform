@@ -14,6 +14,10 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\HomeControlController (Windows)\stdafx.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoTemperature.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Command.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommandParser.h" />
@@ -30,6 +34,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\HomeControlController (Windows)\stdafx.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoTemperature.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Command.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CommandParser.cpp" />

@@ -1,4 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "MyRequestHandlerFactory.h"
 #include "MyRequestHandler.h"
 

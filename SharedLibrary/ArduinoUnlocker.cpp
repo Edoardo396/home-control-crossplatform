@@ -1,10 +1,10 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "ArduinoUnlocker.h"
 #include "User.h"
 #include "Command.h"
 
 // TODO LEGACY! UPDATE ARDUINO!
-std::string ArduinoUnlocker::Unlock() const { return Command::ExecuteGETRequest(ipAddress, port, "?1"); }
+std::string ArduinoUnlocker::Unlock() const { return Command::ExecuteGETRequest(this->ipAddress, port, "?1", 10); }
 
 std::string ArduinoUnlocker::ParseCommand(std::string request, Dictionary parms, User invoker) {
 

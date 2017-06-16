@@ -93,7 +93,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile>../HomeControlController (Windows)/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>../SharedLibrary/stdafx.h</PrecompiledHeaderFile>
       <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
@@ -121,7 +121,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>../HomeControlController (Windows)/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>../SharedLibrary/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,17 +148,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HomeControlController (Windows).cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

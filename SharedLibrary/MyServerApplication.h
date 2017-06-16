@@ -17,10 +17,10 @@ class MyServerApplication : public Poco::Util::ServerApplication {
     friend class ServerDevice;
 
 private:
-    static const std::string filePath;
+    static std::string filePath;
 
 public:
-	MyServerApplication();
+    MyServerApplication(std::string filepath) { MyServerApplication::filePath = filepath; };
 	~MyServerApplication();
 protected:
 	int main(const std::vector<std::string> &) override;

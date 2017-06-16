@@ -7,26 +7,45 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SharedLibrary", "SharedLibr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeControlController (Windows)", "HomeControlController (Windows)\HomeControlController (Windows).vcxproj", "{1828F15E-D739-4E01-B87C-4B4ED3602483}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeControlController", "HomeControlController\HomeControlController.vcxproj", "{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedLibrary\SharedLibrary.vcxitems*{1828f15e-d739-4e01-b87c-4b4ed3602483}*SharedItemsImports = 4
 		SharedLibrary\SharedLibrary.vcxitems*{5f526d42-dbe9-4ae6-94bd-f38206b5e014}*SharedItemsImports = 9
+		SharedLibrary\SharedLibrary.vcxitems*{a260c0c4-f482-4e7b-b8d6-7f8864ffcd99}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Debug|ARM.ActiveCfg = Debug|Win32
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Debug|x64.ActiveCfg = Debug|x64
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Debug|x64.Build.0 = Debug|x64
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Debug|x86.ActiveCfg = Debug|Win32
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Debug|x86.Build.0 = Debug|Win32
+		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|ARM.ActiveCfg = Release|Win32
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|x64.ActiveCfg = Release|x64
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|x64.Build.0 = Release|x64
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|x86.ActiveCfg = Release|Win32
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|x86.Build.0 = Release|Win32
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Debug|ARM.Build.0 = Debug|ARM
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Debug|x64.ActiveCfg = Debug|x64
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Debug|x64.Build.0 = Debug|x64
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Debug|x86.ActiveCfg = Debug|x86
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Debug|x86.Build.0 = Debug|x86
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Release|ARM.ActiveCfg = Release|ARM
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Release|ARM.Build.0 = Release|ARM
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Release|x64.ActiveCfg = Release|x64
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Release|x64.Build.0 = Release|x64
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Release|x86.ActiveCfg = Release|x86
+		{A260C0C4-F482-4E7B-B8D6-7F8864FFCD99}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,9 @@
 #pragma once
 
+#include <vector>
+#include <algorithm>
+#include <map>
+
 #define OUT
 const int port = 8080;
 #define ABSTRACT

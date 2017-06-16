@@ -1,4 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "DaikinAC.h"
 #include "Command.h"
 #include <map>
@@ -19,7 +19,7 @@ std::map<DaikinAC::FanSpeed, std::string> DaikinAC::fanSpeedStr = {{DaikinAC::Fa
 void DaikinAC::PullControlData() {
     using std::string;
 
-    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_control_info");
+    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_control_info", 10);
 
     auto dict = Dictionary();
 
@@ -39,7 +39,7 @@ void DaikinAC::PullControlData() {
 void DaikinAC::PullSensorData() {
     using std::string;
 
-    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_sensor_info");
+    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_sensor_info", 10);
 
     auto dict = Dictionary();
 
@@ -71,15 +71,15 @@ void DaikinAC::PushData() {
     });
 }
 
-std::string DaikinAC::getAllInfos() { return std::string(); }
 
 std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User invoker) {
     auto baseResponse = Super::ParseCommand(request, parms, invoker);
 
+    this->PullData();
+
     if (baseResponse != "false")
         return baseResponse;
 
-    if (request == "getAllInfos") return this->getAllInfos();
     if (request == "getMyTemp") return boost::str(boost::format("%d") % myTemperature);
     if (request == "getOpMode") return this->modeStr[opMode];
     if (request == "getFanSpeed") return this->fanSpeedStr[fanSpeed];

@@ -11,6 +11,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ServerDevice.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DaikinAC.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoTemperature.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\HomeControlController (Windows)\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h" />
@@ -27,5 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ServerDevice.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DaikinAC.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoTemperature.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\HomeControlController (Windows)\stdafx.h" />
   </ItemGroup>
 </Project>

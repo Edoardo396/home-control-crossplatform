@@ -5,12 +5,10 @@
 
 #pragma once
 
-#include "targetver.h"
-
 #include <stdio.h>
-#include <tchar.h>
-#include <vector>
-#include <algorithm>
+#include <string>
 #include <map>
+#include <algorithm>
+
 
 // TODO: reference additional headers your program requires here

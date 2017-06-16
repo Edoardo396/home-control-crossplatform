@@ -1,4 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "MyRequestHandler.h"
 #include "Poco/Net/HTTPServerRequest.h"
 #include <Poco/Format.h>

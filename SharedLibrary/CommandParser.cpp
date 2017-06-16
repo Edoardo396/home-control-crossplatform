@@ -1,4 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "CommandParser.h"
 #include "User.h"
 #include <boost/format.hpp>

@@ -1,5 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
-
+#include "../SharedLibrary/stdafx.h"
 #include "MyServerApplication.h"
 #include <Poco/Net/HTTPServer.h>
 #include <Poco/Net/HTTPRequestHandler.h>
@@ -25,9 +24,7 @@ using std::cout;
 using std::endl;
 
 
-std::string const MyServerApplication::filePath = "C:\\Users\\edoardo.fullin\\Desktop\\Database\\HomeControlDB.xml";
-MyServerApplication::MyServerApplication() {
-}
+std::string MyServerApplication::filePath;
 
 
 MyServerApplication::~MyServerApplication() {
@@ -40,6 +37,8 @@ MyServerApplication::~MyServerApplication() {
 }
 
 std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
+
+    ConsoleLogger::Write("Reloading devices list...", LogType::Message);
 
 	using namespace Poco::XML;
 

@@ -1,12 +1,12 @@
 // HomeControlController (Windows).cpp : Defines the entry point for the console application.
 //
 
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "../SharedLibrary/MyServerApplication.h"
 #include "../SharedLibrary/ConsoleLogger.h"
 
 int main(int argc, char** argv) {
-	MyServerApplication app;
+	MyServerApplication app("C:\\Users\\edoardo.fullin\\Desktop\\Database\\HomeControlDB.xml");
 
 	ConsoleLogger::Write("Starting Application...", LogType::Message);
 

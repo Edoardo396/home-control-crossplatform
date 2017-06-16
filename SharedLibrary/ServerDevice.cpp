@@ -1,4 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "ServerDevice.h"
 #include "ConsoleLogger.h"
 #include "User.h"
@@ -45,13 +45,13 @@ void ServerDevice::SetOn() {
 void ServerDevice::SetOff() {
 	ConsoleLogger::Write("Shutting Down", LogType::Message);
 
-#if defined(LINUX_x86) || defined(LINUX_x64)
+#if defined(LINUX)
     sync();
     reboot(LINUX_REBOOT_CMD_POWER_OFF);
     return;
 #endif
 
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
 	system("shutdown -s -f -t 0 -c \"Shutdown by HomeControl\"");
     return;
 #endif

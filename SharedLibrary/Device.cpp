@@ -1,4 +1,4 @@
-#include "../HomeControlController (Windows)/stdafx.h"
+#include "../SharedLibrary/stdafx.h"
 #include "Device.h"
 #include "Poco/Net/ICMPClient.h"
 #include "Command.h"
@@ -26,9 +26,13 @@ std::string Device::SerializeListDevDisp(std::vector<const Device*> vector) {
     return rtn;
 }
 
-std::string Device::ExecuteCommand(std::string request) const { return Command::ExecuteGETRequest(ipAddress, port, request); }
+std::string Device::getAllInfos() {
+    return this->ToString();
+}
 
-std::string Device::ExecuteCommand(std::map<std::string, std::string> request) const { return Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir(request)); }
+std::string Device::ExecuteCommand(std::string request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, request, timeout); }
+
+std::string Device::ExecuteCommand(std::map<std::string, std::string> request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir(request), timeout); }
 
 std::string Device::ParseCommand(std::string request, Dictionary parms, User invoker) {
 
@@ -57,6 +61,7 @@ std::string Device::ParseCommand(std::string request, Dictionary parms, User inv
         if (request == "getDeviceInfo") { return this->ExecuteCommand(request); }
         if (request == "getState") { return this->ExecuteCommand(request); }
         if (request == "getDisplayName") { return this->ExecuteCommand(request); }
+        if (request == "getAllInfos") { return this->getAllInfos(); }
 
     }
     catch (std::exception& e) { return "false, " + std::string(e.what()); }
@@ -68,7 +73,7 @@ bool Device::Ping() const { return Poco::Net::ICMPClient::pingIPv4(ipAddress.toS
 
 bool Device::CheckReachability() {
 
-    try { auto cmd = Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir("ping")); }
+    try { auto cmd = Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir("ping"), 5); }
     catch (std::exception& e) {
         ConsoleLogger::Write((boost::format("Device %1% is not reachable. %2%") % name % e.what()).str(), LogType::Error);
         state = State::NotReachable;
@@ -80,9 +85,9 @@ bool Device::CheckReachability() {
     return true;
 }
 
-void Device::SetOn() { this->ExecuteCommand("setOn"); }
+void Device::SetOn() { this->ExecuteCommand("setOn"); state = State::Operating; }
 
-void Device::SetOff() { this->ExecuteCommand("setOff"); }
+void Device::SetOff() { this->ExecuteCommand("setOff"); state = State::Off; }
 
 std::string Device::GetDeviceInfo() const { return this->ExecuteCommand("getDeviceInfos"); }
 

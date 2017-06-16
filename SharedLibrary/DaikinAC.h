@@ -135,8 +135,6 @@ protected:
 	void PullData();
 	void PushData();
 
-	std::string getAllInfos();
-
 public:
 
 	DaikinAC(const std::string& name, const Poco::Net::IPAddress& ip_address, int required_access_level, int port, const std::string& display_name, State state)

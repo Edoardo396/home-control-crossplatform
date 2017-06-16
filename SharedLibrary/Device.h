@@ -59,6 +59,8 @@ protected:
 	std::string displayName;
 	std::string name;
 
+    virtual std::string getAllInfos();
+
 public:
 
 
@@ -82,8 +84,8 @@ public:
 		  name(name) { this->CheckReachability(); }
 
 protected:
-	std::string ExecuteCommand(std::string request) const;
-	std::string ExecuteCommand(std::map<std::string, std::string> request) const;
+	std::string ExecuteCommand(std::string request, int timeout = 15) const;
+	std::string ExecuteCommand(std::map<std::string, std::string> request, int timeout = 15) const;
 
 
 public:
@@ -91,8 +93,8 @@ public:
 	bool Ping() const;
 	bool CheckReachability();
 
-	virtual void SetOn();
-	virtual void SetOff();
+	inline virtual void SetOn();
+	inline virtual void SetOff();
 	virtual std::string GetDeviceInfo() const;
 
 	virtual std::string ToString() const;
