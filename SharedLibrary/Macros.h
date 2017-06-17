@@ -23,4 +23,6 @@ typedef std::map<std::string, std::string> Dictionary;
 #define DEVXMLTEXTOF(X) device->getNodeByPath(#X)->innerText()
 #define XMLTEXTOF(X, Y) Y->getNodeByPath(#X)->innerText()
 
+#define BOOLTOSTR(X) (X ? std::string("True") : std::string("False"))
+
 #define FLOATTOSTR(X) boost::str(boost::format("%d") % X)

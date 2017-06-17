@@ -19,6 +19,8 @@ protected:
     double myTemperature;
 
 public:
+    std::string getType() const override { return "ArduinoTemperature"; }
+
     ArduinoTemperature(const std::string& name, const Poco::Net::IPAddress& ip_address, int required_access_level, int port, const std::string& display_name, State state, Location keep_temp_location, bool auto_start, double my_temperature)
         : Device(name, ip_address, required_access_level, port, display_name, state),
           keepTempLocation(keep_temp_location),

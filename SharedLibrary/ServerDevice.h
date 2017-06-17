@@ -8,6 +8,7 @@ class ServerDevice : public Device {
 	public:
 
 
+    std::string getType() const override { return "ServerDevice"; }
 	std::string ParseCommand(std::string request, Dictionary parms, class User invoker) override;
 
 	void SetOn() override;

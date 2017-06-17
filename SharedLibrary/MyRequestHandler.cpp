@@ -20,7 +20,7 @@ void MyRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco
 
 	using namespace std;
 
-	response.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+	response.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
 	response.setContentType("text/html");
 
 	std::ostream& out = response.send();

@@ -16,9 +16,7 @@ std::string Device::SerializeListDevDisp(std::vector<const Device*> vector) {
 
     for (const Device* it : vector) {
         rtn += it->getName() + "-";
-        std::string type = std::string(typeid(*it).name());
-
-        rtn += type.erase(0, type.find(32) + 1) + ";";
+        rtn += it->getType() + ";";
     }
 
     rtn.erase(rtn.size() - 1, 1);
@@ -60,8 +58,9 @@ std::string Device::ParseCommand(std::string request, Dictionary parms, User inv
 
         if (request == "getDeviceInfo") { return this->ExecuteCommand(request); }
         if (request == "getState") { return this->ExecuteCommand(request); }
-        if (request == "getDisplayName") { return this->ExecuteCommand(request); }
+        if (request == "getDisplayName") { return displayName; }
         if (request == "getAllInfos") { return this->getAllInfos(); }
+
 
     }
     catch (std::exception& e) { return "false, " + std::string(e.what()); }

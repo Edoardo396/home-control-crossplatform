@@ -39,6 +39,7 @@ public:
 
 public:
 
+    virtual std::string getType() const = 0;
     static std::string SerializeListDevDisp(std::vector<const Device*> vector);
 
     State getState() const { return state; }
@@ -73,7 +74,8 @@ public:
 		  requiredAccessLevel(required_access_level),
 		  port(port),
 		  displayName(display_name),
-		  name(name) {
+        name(name) {
+        if (state == State::Unknown) this->CheckReachability();
 	}
 
 

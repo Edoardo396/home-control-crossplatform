@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv) {
     
-    MyServerApplication app("/root/HomeControlDB.xml");
+    MyServerApplication app(*(argv + 1));
 
     ConsoleLogger::Write("Starting Application...", LogType::Message);
 

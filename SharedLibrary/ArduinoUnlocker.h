@@ -9,6 +9,8 @@ public:
 
 	std::string Unlock() const;
 
+
+    std::string getType() const override { return "ArduinoUnlocker"; }
 	std::string ParseCommand(std::string request, Dictionary parms, class User invoker) override;
 
 

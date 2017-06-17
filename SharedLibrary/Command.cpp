@@ -25,9 +25,12 @@ std::string Command::GetCommandDir(std::string request) {
 	return GetCommandDir(map);
 }
 
-std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::string dir, int timeout) {
+std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::string dir, int timeout, bool direct) {
 
 	using namespace Poco::Net;
+
+    if (!direct)
+        dir = "?request=" + dir;
 
 	std::string ip = IP.toString();
 

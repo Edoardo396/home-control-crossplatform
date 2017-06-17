@@ -12,6 +12,10 @@ private:
 
 	static std::map<Mode, std::string> modeStr;
 
+protected:
+    std::string getAllInfos() override;
+
+private:
 	static std::map<FanSpeed, std::string> fanSpeedStr;
 
 	float internalTemperature, externalTemperature, myTemperature;
@@ -19,6 +23,10 @@ private:
 	FanSpeed fanSpeed;
 	Mode opMode;
 
+public:
+    std::string getType() const override { return "DaikinAC"; }
+
+private:
 #pragma region Converters
 	std::string IDFromThisFDIR() const {
 		if (swingX && swingY)

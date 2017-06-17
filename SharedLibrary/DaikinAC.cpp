@@ -16,10 +16,27 @@ std::map<DaikinAC::Mode, std::string> DaikinAC::modeStr = {{DaikinAC::Mode::Auto
 
 std::map<DaikinAC::FanSpeed, std::string> DaikinAC::fanSpeedStr = {{DaikinAC::FanSpeed::Auto, "Auto"},{DaikinAC::FanSpeed::Silence, "Silence"},{DaikinAC::FanSpeed::L1, "L1"},{DaikinAC::FanSpeed::L2, "L2"},{DaikinAC::FanSpeed::L3, "L3"},{DaikinAC::FanSpeed::L4, "L4"},{DaikinAC::FanSpeed::L5, "L5"},};
 
+std::string DaikinAC::getAllInfos() {
+
+    auto rtn = std::string();
+
+    rtn += BOOLTOSTR(state == State::Operating) + ";";
+    rtn += modeStr[opMode] + ";";
+    rtn += fanSpeedStr[fanSpeed] + ";";
+    rtn += BOOLTOSTR(swingX) + ";";
+    rtn += BOOLTOSTR(swingY) + ";";
+    rtn += FLOATTOSTR(myTemperature) + ";";
+    rtn += FLOATTOSTR(internalTemperature) + ";";
+    rtn += FLOATTOSTR(externalTemperature) + ";";
+    rtn += displayName;
+
+    return rtn;
+}
+
 void DaikinAC::PullControlData() {
     using std::string;
 
-    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_control_info", 10);
+    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_control_info", 10, true);
 
     auto dict = Dictionary();
 
@@ -39,7 +56,7 @@ void DaikinAC::PullControlData() {
 void DaikinAC::PullSensorData() {
     using std::string;
 
-    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_sensor_info", 10);
+    string response = Command::ExecuteGETRequest(ipAddress, port, "aircon/get_sensor_info", 10, true);
 
     auto dict = Dictionary();
 
@@ -86,6 +103,8 @@ std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User i
     if (request == "getTemp") return FLOATTOSTR(internalTemperature);
     if (request == "getExtTemp") return FLOATTOSTR(externalTemperature);
 
+
+
     if (request == "setTemp") {
         this->myTemperature = std::stof(parms["p0"]);
         PushData(); // TODO check if switich to another thread worth
@@ -115,6 +134,8 @@ std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User i
         PushData();
         return "true";
     }
+
+    return "false";
 }
 
 void DaikinAC::SetOn() {
@@ -141,7 +162,7 @@ Key DaikinAC::GetKeyByValueInMap(std::map<Key, Value> map, Value val) {
             return it->first;
     }
 
-    throw std::exception("Item not found");
+    throw std::runtime_error(std::string("Item not found"));
 }
 
 
