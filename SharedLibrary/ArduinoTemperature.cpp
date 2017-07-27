@@ -72,4 +72,6 @@ void ArduinoTemperature::SetOn() {
 }
 
 ArduinoTemperature::~ArduinoTemperature() {
+
+
 }

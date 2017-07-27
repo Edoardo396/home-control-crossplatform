@@ -73,21 +73,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\build\boost\bin.v2\libs;C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\stage\lib;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\ProgrammazioneOffline\Libraries\Boost\stage\lib;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\libz;$(LibraryPath)</LibraryPath>
     <SourcePath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include;$(SourcePath)</SourcePath>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;</IncludePath>
+    <IncludePath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Net\include;D:\ProgrammazioneOffline\Libraries\Boost;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Foundation\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\XML\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Util\include;$(IncludePath)</IncludePath>
+    <ExecutablePath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost</IncludePath>
-    <LibraryPath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\build\boost\bin.v2\libs;C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\stage\lib;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
-    <SourcePath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include;$(VC_SourcePath);</SourcePath>
+    <IncludePath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Net\include;D:\ProgrammazioneOffline\Libraries\Boost;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Foundation\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\XML\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Util\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\libz;D:\ProgrammazioneOffline\Libraries\Boost\libs;$(LibraryPath)</LibraryPath>
+    <SourcePath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Net\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Foundation\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\XML\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Util\include;D:\ProgrammazioneOffline\Libraries\Boost;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Net;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\XML;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\libz;D:\ProgrammazioneOffline\Libraries\Boost\libs;$(LibraryPath)</LibraryPath>
+    <SourcePath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Net;D:\ProgrammazioneOffline\Libraries\Boost;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -108,15 +112,16 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level1</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Util\include;D:\ProgrammazioneOffline\Libraries\Boost;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Net\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\XML\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Foundation\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\stage\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;PocoFoundationd.lib;PocoXMLd.lib;PocoUtild.lib;PocoNetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\ProgrammazioneOffline\Libraries\Boost\libs;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\libz</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;PocoFoundation.lib;PocoXMLd.lib;PocoUtild.lib;PocoNetd.lib</AdditionalDependencies>
+      <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

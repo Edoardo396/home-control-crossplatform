@@ -5,8 +5,6 @@
 #include <Poco/Net/IPAddress.h>
 
 
-
-
 class Command {
 
 public:

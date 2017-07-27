@@ -1,6 +1,4 @@
 #pragma once
-
-
 #include <Poco/Net/IPAddress.h> // TODO Remove
 #include "IParsable.hpp"
 #include "Macros.h"
