@@ -103,11 +103,15 @@ std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User i
     if (request == "getTemp") return FLOATTOSTR(internalTemperature);
     if (request == "getExtTemp") return FLOATTOSTR(externalTemperature);
 
-
+    if(request == "update") {
+        PushData();
+        PullData();
+        return "true";
+    }
 
     if (request == "setTemp") {
         this->myTemperature = std::stof(parms["p0"]);
-        PushData(); // TODO check if switich to another thread worth
+        PushData(); // TODO check if switch to another thread worth
         return "true";
     }
 

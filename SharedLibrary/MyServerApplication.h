@@ -18,6 +18,7 @@ class MyServerApplication : public Poco::Util::ServerApplication {
 
 private:
     static std::string filePath;
+    std::string TelegramBotToken = "438777687:AAHnK1fydxfjQMlVXGTrdvD3RNyZBlT22rI";
 
 public:
     MyServerApplication(std::string filepath) { MyServerApplication::filePath = filepath; };

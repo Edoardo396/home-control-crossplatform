@@ -21,7 +21,7 @@ std::string Command::GetCommandDir(std::map<std::string, std::string> values) {
 }
 
 std::string Command::GetCommandDir(std::string request) {
-	std::map<std::string, std::string> map = { { "request", request } };
+	Dictionary map = { { "request", request } };
 	return GetCommandDir(map);
 }
 
@@ -63,9 +63,10 @@ std::string Command::ExecutePOSTRequest(Poco::Net::IPAddress IP, int port, std::
 
 	auto clientSession = new HTTPClientSession(ip, Poco::UInt16(port));
 
+
 	auto request = new HTTPRequest(HTTPRequest::HTTP_POST, dir, HTTPMessage::HTTP_1_1);
 
-	request->setContentType("raw");
+    request->setContentType("raw");
 
 	std::string requeststr = "";
 
@@ -77,13 +78,19 @@ std::string Command::ExecutePOSTRequest(Poco::Net::IPAddress IP, int port, std::
 
 	request->setContentLength(requeststr.length());
 
-	clientSession->sendRequest(*request) << requeststr;
+    std::ostream& osstream = clientSession->sendRequest(*request);
+    osstream << requeststr;
+
 
 	HTTPResponse response;
 
 	std::istream& is = clientSession->receiveResponse(response);
 
 	auto sresponse = std::string(std::istreambuf_iterator<char>(is), {});
+    
+#ifdef _DEBUG
+    ConsoleLogger::Write(sresponse, LogType::Message);
+    #endif
 
 //    ConsoleLogger::Write(IP.toString() + " response: " + sresponse, LogType::Message);
 

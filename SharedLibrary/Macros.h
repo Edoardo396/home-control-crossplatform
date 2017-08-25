@@ -10,6 +10,7 @@ const int port = 8080;
 
 typedef std::map<std::string, std::string> Dictionary;
 
+
 /* FOREGROUND */
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"

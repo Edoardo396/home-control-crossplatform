@@ -1,7 +1,6 @@
 #include "../SharedLibrary/stdafx.h"
 #include "MyServerApplication.h"
 #include <Poco/Net/HTTPServer.h>
-#include <Poco/Net/HTTPRequestHandler.h>
 #include <Poco/Net/HTTPResponse.h>
 #include <fstream>
 #include <Poco/Net/HTTPServerResponse.h>
@@ -13,12 +12,15 @@
 #include "Poco/SAX/InputSource.h"
 #include "Poco/DOM/NamedNodeMap.h"
 #include "User.h"
+#include <boost/thread.hpp>
 #include "ConsoleLogger.h"
 #include "ArduinoUnlocker.h"
 #include "Macros.h"
 #include <boost/format.hpp>
 #include "ServerDevice.h"
 #include "DaikinAC.h"
+#include <string>
+
 
 using std::cout;
 using std::endl;
@@ -41,6 +43,7 @@ std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
     ConsoleLogger::Write("Reloading devices list...", LogType::Message);
 
 	using namespace Poco::XML;
+
 
 	auto devlist = new std::list<Device*>();
 

@@ -80,6 +80,7 @@
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>/usr/local/lib/libPocoFoundationd.so;/usr/local/lib/libPocoXMLd.so;/usr/local/lib/libPocoUtild.so;/usr/local/lib/libPocoNetd.so;-lpthread;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>-lTgBot -lboost_system -lboost_iostreams -lssl -lcrypto -lpthread</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

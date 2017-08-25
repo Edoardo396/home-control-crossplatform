@@ -73,8 +73,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>D:\ProgrammazioneOffline\Libraries\Boost\stage\lib;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\libz;$(LibraryPath)</LibraryPath>
-    <SourcePath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include;$(SourcePath)</SourcePath>
+    <LibraryPath>D:\ProgrammazioneOffline\Libraries\OpenSSL\lib;D:\ProgrammazioneOffline\Libraries\Boost\lib32-msvc-14.1;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\libz;$(LibraryPath)</LibraryPath>
+    <SourcePath>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2;$(SourcePath)</SourcePath>
     <IncludePath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Net\include;D:\ProgrammazioneOffline\Libraries\Boost;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Foundation\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\XML\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Util\include;$(IncludePath)</IncludePath>
     <ExecutablePath>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
@@ -98,15 +98,16 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>../SharedLibrary/stdafx.h</PrecompiledHeaderFile>
       <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>PocoFoundationd.lib;PocoXMLd.lib;PocoUtild.lib;PocoNetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PocoFoundationd.lib;PocoXMLd.lib;PocoUtild.lib;PocoNetd.lib;boost_system-vc141-mt-gd-1_64.lib;libboost_iostreams-vc141-mt-gd-1_64.lib;libboost_thread-vc141-mt-gd-1_64.lib;libcryptoMD.lib;libsslMD.lib;libeay32.dll.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\ProgrammazioneOffline\Libraries\OpenSSL-Win32\lib;D:\ProgrammazioneOffline\Libraries\Boost\lib32-msvc-14.1;C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost\stage\lib;D:\ProgrammazioneOffline\Libraries\TelegramBot\lib</AdditionalLibraryDirectories>
+      <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
