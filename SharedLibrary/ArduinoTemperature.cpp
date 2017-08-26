@@ -3,11 +3,9 @@
 #include "ConsoleLogger.h"
 #include <boost/lexical_cast.hpp>
 #include <boost/format.hpp>
+#include "User.h"
 #include <thread>
 #include <chrono>
-#include <Poco/Thread.h>
-#include <Poco/Runnable.h>
-#include <Poco/ThreadTarget.h>
 
 void ArduinoTemperature::KeepTemperature() {
     try {
@@ -54,6 +52,13 @@ void ArduinoTemperature::StartKT() const {
 
 }
 
+void ArduinoTemperature::StopKT() const {
+}
+
+std::string ArduinoTemperature::ParseCommand(std::string request, Dictionary parms, User invoker) {
+    return std::string("CommandNotFound");
+}
+
 void ArduinoTemperature::SetOn() {
     switch (keepTempLocation) {
     case Location::Device:
@@ -69,6 +74,13 @@ void ArduinoTemperature::SetOn() {
         break;
     default: ;
     }
+}
+
+void ArduinoTemperature::SetOff() {
+}
+
+std::string ArduinoTemperature::GetDeviceInfo() const {
+    return std::string();
 }
 
 ArduinoTemperature::~ArduinoTemperature() {

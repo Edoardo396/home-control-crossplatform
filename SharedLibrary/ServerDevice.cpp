@@ -77,5 +77,4 @@ void ServerDevice::UpdateDB() {
 }
 
 ServerDevice::~ServerDevice() {
-
 }

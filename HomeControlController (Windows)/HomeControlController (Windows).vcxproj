@@ -102,6 +102,7 @@
       <AdditionalIncludeDirectories>C:\Users\edoardo.fullin\OneDrive\Programmazione\C++\Librerie\C - C++\Boost;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Util\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\XML\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Net\include;C:\Users\edoardo.fullin\Desktop\Shares\Files\poco-1.7.8p2-all\Foundation\include</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>../SharedLibrary/stdafx.h</PrecompiledHeaderFile>
       <PreprocessToFile>false</PreprocessToFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

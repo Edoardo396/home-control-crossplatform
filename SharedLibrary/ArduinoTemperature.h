@@ -46,6 +46,6 @@ public:
     void SetOn() override;
     void SetOff() override;
     std::string GetDeviceInfo() const override;
-    ArduinoTemperature();
     ~ArduinoTemperature();
 };
+

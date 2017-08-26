@@ -16,7 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\HomeControlController (Windows)\stdafx.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoTemperature.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
+      <ExcludedFromBuild>false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Command.h" />
@@ -34,7 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoTemperature.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
+      <ExcludedFromBuild>false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Command.cpp" />

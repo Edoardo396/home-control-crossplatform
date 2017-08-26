@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>LINUX</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LINUX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>
       </AdditionalOptions>
     </ClCompile>
@@ -82,6 +82,16 @@
       <AdditionalDependencies>/usr/local/lib/libPocoFoundationd.so;/usr/local/lib/libPocoXMLd.so;/usr/local/lib/libPocoUtild.so;/usr/local/lib/libPocoNetd.so;-lpthread;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-lTgBot -lboost_system -lboost_iostreams -lssl -lcrypto -lpthread</AdditionalOptions>
     </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>LINUX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PreprocessorDefinitions>LINUX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

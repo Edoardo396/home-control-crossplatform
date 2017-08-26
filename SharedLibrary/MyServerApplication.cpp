@@ -20,6 +20,7 @@
 #include "ServerDevice.h"
 #include "DaikinAC.h"
 #include <string>
+#include "ArduinoTemperature.h"
 
 
 using std::cout;
@@ -62,10 +63,12 @@ std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
 
 		DVLOAD devtmp = { DEVXMLTEXTOF(/Type), DEVXMLTEXTOF(/DisplayName), DEVXMLTEXTOF(/Nome), std::stoi(DEVXMLTEXTOF(/RAL)), std::stoi(DEVXMLTEXTOF(/Port)), Poco::Net::IPAddress::parse(DEVXMLTEXTOF(/IPAddress)) };
 
-		if (devtmp.type == "ArduinoUnlocker")
-			devlist->push_back(new ArduinoUnlocker(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, devtmp.dispname,Device::State::Unknown));
-		else if (devtmp.type == "DaikinAC")
-			devlist->push_back(new DaikinAC(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, devtmp.dispname,Device::State::Unknown));
+        if (devtmp.type == "ArduinoUnlocker")
+            devlist->push_back(new ArduinoUnlocker(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, devtmp.dispname, Device::State::Unknown));
+        else if (devtmp.type == "DaikinAC")
+            devlist->push_back(new DaikinAC(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, devtmp.dispname, Device::State::Unknown));
+        else if (devtmp.type == "ArduinoTemperature")
+            devlist->push_back(new ArduinoTemperature(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, Device::Location::Device, false, stof(DEVXMLTEXTOF(/MyTemp))));
 		else
 			ConsoleLogger::Write((boost::format("Not recognized type \"%1%\" of %2%") % devtmp.type % devtmp.name).str(), LogType::Warning);
 
