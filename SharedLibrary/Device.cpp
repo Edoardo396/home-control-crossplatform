@@ -72,8 +72,9 @@ bool Device::Ping() const { return Poco::Net::ICMPClient::pingIPv4(ipAddress.toS
 
 bool Device::CheckReachability() {
 
-    try { auto cmd = Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir("ping"), 5); }
-    catch (std::exception& e) {
+    try {
+        auto cmd = Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir("ping"), 5, true);
+    } catch (std::exception& e) {
         ConsoleLogger::Write((boost::format("Device %1% is not reachable. %2%") % name % e.what()).str(), LogType::Error);
         state = State::NotReachable;
         return false;

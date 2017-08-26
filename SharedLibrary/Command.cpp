@@ -90,7 +90,7 @@ std::string Command::ExecutePOSTRequest(Poco::Net::IPAddress IP, int port, std::
     
 #ifdef _DEBUG
     ConsoleLogger::Write(sresponse, LogType::Message);
-    #endif
+#endif
 
 //    ConsoleLogger::Write(IP.toString() + " response: " + sresponse, LogType::Message);
 

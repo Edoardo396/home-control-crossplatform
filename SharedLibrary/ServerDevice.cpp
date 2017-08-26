@@ -16,26 +16,10 @@
 
 std::string ServerDevice::ParseCommand(std::string request, Dictionary parms, User invoker) {
 	
-    if (request == "ping")
-        return "Pong!";
+    if (on_command_delegate != nullptr)
+        return on_command_delegate(request, parms, invoker, this);
 
-    if (request == "login")
-        return invoker.getId() != -1 ? std::string("true;") + std::to_string(invoker.getAccessLevel()) : "false";
-
-    if (request == "getMyDevices")
-        return Device::SerializeListDevDisp(invoker.GetMyDevices());
-
-    if(request == "srv-shutdown" && invoker.getAccessLevel() >= 80) {
-        this->SetOff();
-        return "true";
-    }
-    
-    if(request == "update-db" && invoker.getAccessLevel() >= 60) {
-        this->UpdateDB();
-        return "true";
-    }
-
-    return "CommandNotFound";
+    return "NoDelegate";
 }
 
 void ServerDevice::SetOn() {
@@ -52,7 +36,7 @@ void ServerDevice::SetOff() {
 #endif
 
 #ifdef WIN32
-	system("shutdown -s -f -t 0 -c \"Shutdown by HomeControl\"");
+	system("shutdown /s /f /t 0 /c \"Shutdown by HomeControl\"");
     return;
 #endif
 

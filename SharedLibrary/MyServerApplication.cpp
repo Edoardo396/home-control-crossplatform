@@ -74,7 +74,32 @@ std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
 	
 	}
 
-	devlist->push_back(new ServerDevice("ServerSelf", Poco::Net::IPAddress(std::string("::1"), Poco::Net::IPAddress::IPv6), 0, 8080, "Server", Device::State::Reachable));
+    auto serverSelfCommands = [](std::string request, Dictionary params, class User invoker, ServerDevice* sender) -> std::string
+	{
+        if (request == "ping")
+            return "Pong!";
+
+        if (request == "login")
+            return invoker.getId() != -1 ? std::string("true;") + std::to_string(invoker.getAccessLevel()) : "false";
+
+        if (request == "getMyDevices")
+            return Device::SerializeListDevDisp(invoker.GetMyDevices());
+
+        if (request == "srv-shutdown" && invoker.getAccessLevel() >= 80) {
+            sender->SetOff();
+            return "true";
+        }
+
+        if (request == "update-db" && invoker.getAccessLevel() >= 60) {
+            sender->UpdateDB();
+            return "true";
+        }
+
+        return "CommandNotFound";
+	};
+
+
+	devlist->push_back(new ServerDevice("ServerSelf", Poco::Net::IPAddress(std::string("::1"), Poco::Net::IPAddress::IPv6), 0, 8080, "Server", Device::State::Reachable, serverSelfCommands));
 
 	return devlist;
 }
