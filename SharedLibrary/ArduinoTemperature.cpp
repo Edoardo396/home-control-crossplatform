@@ -4,8 +4,9 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/format.hpp>
 #include "User.h"
-#include <thread>
+#include <future>
 #include <chrono>
+#include "KeepTemperatureThread.h"
 
 void ArduinoTemperature::KeepTemperature() {
     try {
@@ -20,9 +21,12 @@ void ArduinoTemperature::KeepTemperature() {
                 state = State::Off;
             }
 
-            std::this_thread::sleep_for(std::chrono::seconds(10));
-            ConsoleLogger::Write("Checking internal temperature...", LogType::Automator);
+            std::this_thread::sleep_for(std::chrono::seconds(60));
+            ConsoleLogger::Write("Checking internal temperature of " + this->getName() + "...", LogType::Automator);
         }
+    } catch(boost::thread_interrupted& e) {
+        ConsoleLogger::Write("Temp thread interrupted", LogType::Warning);
+        return;
     } catch (std::exception& e) {
         ConsoleLogger::Write(e.what(), LogType::Error);
         SetOff();
@@ -47,13 +51,16 @@ float ArduinoTemperature::getInternalTemperature() const { return ArduinoNANTemp
 
 int ArduinoTemperature::getInternalHumidity() const { return ArduinoNANTemp(this->ExecuteCommand("getHumi")); }
 
-void ArduinoTemperature::StartKT() const {
-
-
+void ArduinoTemperature::StartKT() {
+    thread = new boost::thread(&ArduinoTemperature::KeepTemperature, this);
 }
 
-void ArduinoTemperature::StopKT() const {
+void ArduinoTemperature::StopKT() {
+    thread->interrupt();
+    thread->join();
+    thread = nullptr;
 }
+
 
 std::string ArduinoTemperature::ParseCommand(std::string request, Dictionary parms, User invoker) {
     return std::string("CommandNotFound");

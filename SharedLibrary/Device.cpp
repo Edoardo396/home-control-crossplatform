@@ -28,7 +28,7 @@ std::string Device::getAllInfos() {
     return this->ToString();
 }
 
-std::string Device::ExecuteCommand(std::string request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, request, timeout); }
+std::string Device::ExecuteCommand(std::string request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, request, timeout, false); }
 
 std::string Device::ExecuteCommand(std::map<std::string, std::string> request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir(request), timeout); }
 
@@ -95,4 +95,16 @@ std::string Device::ToString() const { return (boost::format("%1% %2% %3% %4% %5
 
 Device::~Device() {
 
+}
+
+Device::Location Device::LocationByText(std::string& location) {
+
+    if (location == "Manual")
+        return Location::Manual;
+    if (location == "Device")
+        return Location::Device;
+    if (location == "Server")
+        return Location::Server;
+
+    throw std::runtime_error("Location error.");
 }

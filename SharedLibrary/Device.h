@@ -38,6 +38,7 @@ public:
 public:
 
     virtual std::string getType() const = 0;
+    static Device::Location LocationByText(std::string& location);
     static std::string SerializeListDevDisp(std::vector<const Device*> vector);
 
     State getState() const { return state; }
@@ -91,7 +92,7 @@ protected:
 public:
 	virtual std::string ParseCommand(std::string request, Dictionary parms, User invoker) override;
 	bool Ping() const;
-	bool CheckReachability();
+	virtual bool CheckReachability();
 
 	inline virtual void SetOn();
 	inline virtual void SetOff();

@@ -31,7 +31,7 @@ namespace ArduinoSimulator {
             
             string response = "false";
 
-            Console.Write(context.Request.QueryString["request"] + " response?");
+            Console.Write(context.Request.QueryString["request"] + " response? ");
 
 
             return Console.ReadLine();
