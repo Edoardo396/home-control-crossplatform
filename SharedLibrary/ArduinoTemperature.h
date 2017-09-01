@@ -33,7 +33,7 @@ public:
           autoStart(auto_start),
         myTemperature(my_temperature) {
 
-        if (auto_start) this->StartKT();
+        if (auto_start && this->IsOK()) this->StartKT();
 
     }
 

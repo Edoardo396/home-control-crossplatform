@@ -31,6 +31,8 @@ std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::s
 	using namespace Poco::Net;
 
     Poco::URI uri("http://" + IP.toString() + ":" + std::to_string(port) + "/");
+
+    if(!direct)
     uri.addQueryParameter("request", dir);
 
 	auto clientSession = new HTTPClientSession(uri.getHost(), uri.getPort());

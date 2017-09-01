@@ -13,7 +13,7 @@ void ArduinoTemperature::KeepTemperature() {
     try {
 
         while (true) {
-
+            ConsoleLogger::Write("Checking internal temperature of " + this->getName() + "...", LogType::Automator);
             float temp = getInternalTemperature();
 
             if (temp < myTemperature - .5f) {
@@ -28,7 +28,7 @@ void ArduinoTemperature::KeepTemperature() {
             boost::this_thread::interruption_point();
             std::this_thread::sleep_for(std::chrono::seconds(20));
             boost::this_thread::interruption_point();
-            ConsoleLogger::Write("Checking internal temperature of " + this->getName() + "...", LogType::Automator);
+          
         }
     } catch(boost::thread_interrupted& e) {
         ConsoleLogger::Write("Temp thread interrupted", LogType::Warning);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
@@ -9,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace ArduinoSimulator {
     class Program {
+
+        static Random rnd = new Random();
+        private float temp = 16.5f;
+
+
         static void Main(string[] args) {
             var web = new HttpListener();
             web.Prefixes.Add("http://*:8090/");
@@ -17,7 +23,6 @@ namespace ArduinoSimulator {
             while (true) {
                 var context = web.GetContext();
                 var response = context.Response;
-                Console.WriteLine("Passsed here");
                 string responseString = GetResponse(context);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 response.ContentLength64 = buffer.Length;
@@ -30,11 +35,34 @@ namespace ArduinoSimulator {
 
         public static string GetResponse(HttpListenerContext context) {
             
-            string response = "false";
+            string request = context.Request.QueryString["request"];
 
-            Console.Write(context.Request.QueryString["request"] + " response? ");
+            Console.WriteLine("Requested " + request);
 
+            if (request == "getTemp")
+                return ((rnd.NextDouble() + 1) * 15).ToString(CultureInfo.InvariantCulture);
 
+            if (request == "setOn" || request == "setOff" || request == "setFOn")
+                return "true";
+
+            if (request == "ping") return "true";
+
+            if (request == "getState") return rnd.Next(0, 2) == 0 ? "On" : "Off";
+
+            if (request == "getDeviceInfo") return "Arduino Simulator";
+
+            if (request == "getHumi")
+                return rnd.Next(0,101).ToString(CultureInfo.InvariantCulture);
+
+            if (request == "setTemp") {
+                Console.WriteLine("temp: " + context.Request.QueryString["p0"]);
+                return "true";
+            }
+
+            if (request == "getHIndex")
+                return "diocan g'ho minga voglia di calcolarlo a man";
+
+            Console.WriteLine("Command not recognized, enter respose: ");
             return Console.ReadLine();
         }
     }
