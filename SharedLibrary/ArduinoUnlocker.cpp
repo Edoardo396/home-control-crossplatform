@@ -10,13 +10,13 @@ std::string ArduinoUnlocker::ParseCommand(std::string request, Dictionary parms,
 
 	auto super = Super::ParseCommand(request, parms, invoker);
 
-	if (super != "false") return super;
+	if (super != "CommandNotFound") return super;
 
 	try { if (request == "unlock") return this->Unlock(); }
 	catch (std::exception& e) { return "false, " + std::string(e.what()); }
 
 
-	return "false";
+	return "CommandNotFound";
 }
 
 ArduinoUnlocker::~ArduinoUnlocker() {

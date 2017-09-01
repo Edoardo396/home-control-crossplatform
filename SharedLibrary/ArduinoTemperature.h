@@ -13,19 +13,18 @@ class ArduinoTemperature : public Device {
 
     void KeepTemperature();
     float ArduinoNANTemp(const std::string& resp) const;
+    Location keepTempLocation; // Nexer change this, use ChangeKTLocation!
 
 protected:
 
     float getInternalTemperature() const;
     int getInternalHumidity() const;
-
-    Location keepTempLocation;
     bool autoStart;
     double myTemperature;
 
 public:
     std::string getType() const override { return "ArduinoTemperature"; }
-
+    virtual void ChangeKTLocation(Location nl);
 
 
     ArduinoTemperature(const std::string& name, const Poco::Net::IPAddress& ip_address, int required_access_level, int port, const std::string& display_name, State state, Location keep_temp_location, bool auto_start, double my_temperature)

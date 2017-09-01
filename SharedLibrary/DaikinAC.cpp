@@ -92,7 +92,7 @@ std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User i
 
     this->PullData();
 
-    if (baseResponse != "false")
+    if (baseResponse != "CommandNotFound")
         return baseResponse;
 
     if (request == "getMyTemp") return boost::str(boost::format("%d") % myTemperature);
@@ -128,13 +128,13 @@ std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User i
     }
 
     if (request == "setOpMode") {
-        this->opMode = GetKeyByValueInMap(modeStr, parms["p0"]);
+        this->opMode = Device::GetKeyByValueInMap(modeStr, parms["p0"]);
         PushData();
         return "true";
     }
 
     if (request == "setFanSpeed") {
-        this->fanSpeed = GetKeyByValueInMap(fanSpeedStr, parms["p0"]);
+        this->fanSpeed = Device::GetKeyByValueInMap(fanSpeedStr, parms["p0"]);
         PushData();
         return "true";
     }
@@ -159,15 +159,7 @@ void DaikinAC::SetOff() {
 }
 
 
-template <class Key, class Value>
-Key DaikinAC::GetKeyByValueInMap(std::map<Key, Value> map, Value val) {
-    for (auto it = map.begin(); it != map.end(); ++it) {
-        if (it->second == val)
-            return it->first;
-    }
 
-    throw std::runtime_error(std::string("Item not found"));
-}
 
 
 DaikinAC::~DaikinAC() {

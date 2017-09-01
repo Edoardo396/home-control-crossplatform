@@ -8,5 +8,4 @@ public:
 	 IParsable(){}
 
 	virtual std::string ParseCommand(std::string request, Dictionary parms, class User invoker) = 0;
-
 };

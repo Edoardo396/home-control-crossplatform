@@ -17,6 +17,7 @@ namespace ArduinoSimulator {
             while (true) {
                 var context = web.GetContext();
                 var response = context.Response;
+                Console.WriteLine("Passsed here");
                 string responseString = GetResponse(context);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 response.ContentLength64 = buffer.Length;

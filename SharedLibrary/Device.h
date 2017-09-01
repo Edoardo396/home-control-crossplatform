@@ -23,24 +23,24 @@ public:
 		Unknown
 	};
 
-	static inline std::string StringState(State s) { return statesStr[s]; }
+    // TODO Define in .cpp
+    template <class Key, class Value>
+    static Key Device::GetKeyByValueInMap(std::map<Key, Value> map, Value val) {
+        for (auto it = map.begin(); it != map.end(); ++it) {
+            if (it->second == val)
+                return it->first;
+        }
 
-	/*
-	ENUM(State, char, Off = 0,
-		On,
-		NotReachable,
-		Reachable,
-		Operating,
-		Unknown
-	);
-	*/
+        throw std::runtime_error(std::string("Item not found"));
+    }
 
-public:
-
-    virtual std::string getType() const = 0;
-    static Device::Location LocationByText(std::string& location);
     static std::string SerializeListDevDisp(std::vector<const Device*> vector);
-
+	static inline std::string StringState(State s) { return statesStr[s]; }
+    virtual std::string getType() const = 0;
+    
+    // TODO Remove in version 2
+    [[deprecated("Use statesMap insted, will be removed in version 2")]]
+    static Device::Location LocationByText(std::string& location);
     State getState() const { return state; }
     int getRequiredAccessLevel() const { return requiredAccessLevel; }
 
@@ -51,6 +51,7 @@ protected:
 	}
 
 	static std::map<State, std::string> statesStr;
+    static std::map<Location, std::string> locationStr;
 
 	State state = State::Unknown;
 	Poco::Net::IPAddress ipAddress;
@@ -102,3 +103,4 @@ public:
 
 	~Device();
 };
+

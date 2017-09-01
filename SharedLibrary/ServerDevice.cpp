@@ -7,6 +7,8 @@
 #include "ConsoleLogger.h"
 #include <boost/timer/timer.hpp>
 #include <boost/format.hpp>
+#include <boost/thread/v2/thread.hpp>
+#include <thread>
 
 #ifdef LINUX    
 #include <linux/reboot.h>
@@ -67,6 +69,8 @@ void ServerDevice::UpdateDB() {
     Device::devices = nullptr;
     User::users = nullptr;
 
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+
     ConsoleLogger::Write("Updating database...", LogType::Message);
     Device::devices = MyServerApplication::ReloadDevicesFromXML();
     User::users = MyServerApplication::ReloadUsersFromXML();
@@ -74,6 +78,7 @@ void ServerDevice::UpdateDB() {
 //    timer.stop();
 
     ConsoleLogger::Write(boost::str(boost::format("Database update completed. Elapsed time: %1%") % 1/*timer.format()*/), LogType::Message);
+   
 }
 
 ServerDevice::~ServerDevice() {

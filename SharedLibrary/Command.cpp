@@ -4,6 +4,7 @@
 #include <Poco/Net/HTTPClientSession.h>
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
+#include <Poco/URI.h>
 #include "Macros.h"
 #include "ConsoleLogger.h"
 
@@ -29,16 +30,14 @@ std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::s
 
 	using namespace Poco::Net;
 
-    if (!direct)
-        dir = "?request=" + dir;
+    Poco::URI uri("http://" + IP.toString() + ":" + std::to_string(port) + "/");
+    uri.addQueryParameter("request", dir);
 
-	std::string ip = IP.toString();
-
-	auto clientSession = new HTTPClientSession(ip, Poco::UInt16(port));
+	auto clientSession = new HTTPClientSession(uri.getHost(), uri.getPort());
 
     clientSession->setTimeout(Poco::Timespan(timeout, 0L));
 
-	auto request = new HTTPRequest(HTTPRequest::HTTP_GET, dir, HTTPMessage::HTTP_1_1);
+	auto request = new HTTPRequest(HTTPRequest::HTTP_GET, uri.getPathAndQuery(), HTTPMessage::HTTP_1_1);
 
 	clientSession->sendRequest(*request);
 

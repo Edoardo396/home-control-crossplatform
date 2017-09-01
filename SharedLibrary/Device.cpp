@@ -10,6 +10,7 @@
 
 std::list<Device*>* Device::devices;
 std::map<Device::State, std::string> Device::statesStr = {{State::Off, "Off"},{State::On, "On"},{State::NotReachable, "NotReachable"},{State::Reachable, "Reachable"},{State::Operating, "Operating"},{State::Unknown, "Unknown"}};
+std::map<Device::Location, std::string> Device::locationStr = { {Device::Location::Device, "Device"},{ Device::Location::Manual, "Manual" } ,{ Device::Location::Server, "Server" } };
 
 std::string Device::SerializeListDevDisp(std::vector<const Device*> vector) {
     auto rtn = std::string();
@@ -65,7 +66,7 @@ std::string Device::ParseCommand(std::string request, Dictionary parms, User inv
     }
     catch (std::exception& e) { return "false, " + std::string(e.what()); }
 
-    return "false";
+    return "CommandNotFound";
 }
 
 bool Device::Ping() const { return Poco::Net::ICMPClient::pingIPv4(ipAddress.toString()) >= 1; }
@@ -93,10 +94,17 @@ std::string Device::GetDeviceInfo() const { return this->ExecuteCommand("getDevi
 
 std::string Device::ToString() const { return (boost::format("%1% %2% %3% %4% %5%") % name % displayName % ipAddress.toString() % port % statesStr[state]).str(); }
 
+/*
+template <class Key, class Value>
+Key Device::GetKeyByValueInMap(std::map<Key, Value> map, Value val) 
+*/
+
 Device::~Device() {
 
 }
 
+// TODO Remove in version 2
+[[deprecated("Use statesMap insted, will be removed in version 2")]]
 Device::Location Device::LocationByText(std::string& location) {
 
     if (location == "Manual")

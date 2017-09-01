@@ -135,9 +135,6 @@ private:
 	void PullControlData();
 	void PullSensorData();
 
-	template <class Key, class Value>
-	Key GetKeyByValueInMap(std::map<Key, Value> map, Value val);
-
 protected:
 
 	void PullData();

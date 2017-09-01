@@ -141,10 +141,6 @@ std::list<User>* MyServerApplication::ReloadUsersFromXML() {
 
 int MyServerApplication::main(const std::vector<std::string>&) {
 
-   Command::ExecuteGETRequest(Poco::Net::IPAddress("127.0.0.1"), 8090, "?request=ping", 10, false);
-
-
-
 	using namespace Poco::Net;
 
 	ConsoleLogger::Write("Creating users list...", LogType::Message);
