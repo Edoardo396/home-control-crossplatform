@@ -6,7 +6,9 @@
 #include <future>
 #include "User.h"
 #include "Macros.h"
+#include "Support.h"
 #include <boost/format.hpp>
+#include <algorithm>
 
 std::map<DaikinAC::Mode, std::string> DaikinAC::modeStr = {{DaikinAC::Mode::Auto, "Auto"},
     {DaikinAC::Mode::Dry, "Dry"},
@@ -128,13 +130,13 @@ std::string DaikinAC::ParseCommand(std::string request, Dictionary parms, User i
     }
 
     if (request == "setOpMode") {
-        this->opMode = Device::GetKeyByValueInMap(modeStr, parms["p0"]);
+        this->opMode = Support::GetKeyByValueInMap(modeStr, parms["p0"]);
         PushData();
         return "true";
     }
 
     if (request == "setFanSpeed") {
-        this->fanSpeed = Device::GetKeyByValueInMap(fanSpeedStr, parms["p0"]);
+        this->fanSpeed = Support::GetKeyByValueInMap(fanSpeedStr, parms["p0"]);
         PushData();
         return "true";
     }

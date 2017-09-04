@@ -54,6 +54,7 @@ public:
         if (type == LogType::Message)
             printf("%s%s\n", KCYN, mess.c_str());
 
+
         printf(KWHT);
         fflush(stdout);
 #endif
@@ -71,9 +72,6 @@ public:
 			SetConsoleTextAttribute(hConsole, 11);
 
 		std::cout << enummsg + " " + text << std::endl;
-
-
-		SetConsoleTextAttribute(hConsole, 7);
 #endif
 	}
 };

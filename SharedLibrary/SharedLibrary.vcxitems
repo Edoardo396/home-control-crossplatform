@@ -30,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ServerDevice.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Support.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
   </ItemGroup>
   <ItemGroup>

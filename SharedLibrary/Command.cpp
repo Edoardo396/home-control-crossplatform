@@ -6,9 +6,10 @@
 #include <Poco/Net/HTTPResponse.h>
 #include <Poco/URI.h>
 #include "Macros.h"
+#include <unordered_map>
 #include "ConsoleLogger.h"
 
-std::string Command::GetCommandDir(std::map<std::string, std::string> values) {
+std::string Command::GetCommandDir(std::unordered_map<std::string, std::string> values) {
 
 	std::string s = "?";
 
@@ -30,10 +31,9 @@ std::string Command::ExecuteGETRequest(Poco::Net::IPAddress IP, int port, std::s
 
 	using namespace Poco::Net;
 
-    Poco::URI uri("http://" + IP.toString() + ":" + std::to_string(port) + "/");
+    std::string suri = "http://" + IP.toString() + ":" + std::to_string(port) + "/" + (direct ? dir : "?request=" + dir);
 
-    if(!direct)
-    uri.addQueryParameter("request", dir);
+    Poco::URI uri(suri);
 
 	auto clientSession = new HTTPClientSession(uri.getHost(), uri.getPort());
 

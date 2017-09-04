@@ -23,9 +23,10 @@ public:
 		Unknown
 	};
 
-    // TODO Define in .cpp
+
     template <class Key, class Value>
-    static Key Device::GetKeyByValueInMap(std::map<Key, Value> map, Value val) {
+    [[deprecated("Use Support class instead")]]
+    static Key GetKeyByValueInMap(std::map<Key, Value> map, Value val) {
         for (auto it = map.begin(); it != map.end(); ++it) {
             if (it->second == val)
                 return it->first;
@@ -87,7 +88,7 @@ public:
 
 protected:
 	std::string ExecuteCommand(std::string request, int timeout = 15) const;
-	std::string ExecuteCommand(std::map<std::string, std::string> request, int timeout = 15) const;
+	std::string ExecuteCommand(Dictionary request, int timeout = 15) const;
 
 
 public:

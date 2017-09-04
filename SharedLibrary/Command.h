@@ -3,12 +3,13 @@
 #include <map>
 #include <vector>
 #include <Poco/Net/IPAddress.h>
+#include "KeepTemperatureThread.h"
 
 
 class Command {
 
 public:
-	static std::string GetCommandDir(std::map< std::string, std::string> values);
+	static std::string GetCommandDir(Dictionary values);
 
 	static std::string GetCommandDir(std::string request);
 

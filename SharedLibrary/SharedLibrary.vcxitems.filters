@@ -1,33 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyServerApplication.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Device.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Command.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandler.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CommandParser.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ServerDevice.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DaikinAC.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoTemperature.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoTemperature.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Command.cpp">
+      <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CommandParser.cpp">
+      <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)DaikinAC.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Device.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandler.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyServerApplication.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ServerDevice.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp">
+      <Filter>Support</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Device.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Command.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ConsoleLogger.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandler.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)User.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CommandParser.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ServerDevice.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DaikinAC.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoTemperature.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\HomeControlController (Windows)\stdafx.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoTemperature.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoUnlocker.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Command.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommandParser.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)DaikinAC.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Device.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)IParsable.hpp">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandler.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyRequestHandlerFactory.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyServerApplication.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ServerDevice.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ConsoleLogger.h">
+      <Filter>Support</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Macros.h">
+      <Filter>Support</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\HomeControlController (Windows)\stdafx.h">
+      <Filter>Support</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)User.h">
+      <Filter>Support</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\Support.h">
+      <Filter>Support</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Devices">
+      <UniqueIdentifier>{4adb93eb-575b-45ae-b497-f292d3aeecf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Net">
+      <UniqueIdentifier>{bbc50947-4ec1-47fe-b9d0-f69c15d34265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Command">
+      <UniqueIdentifier>{3e134a72-4e67-4f92-ab70-330da9b4ef66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Support">
+      <UniqueIdentifier>{18759936-b61e-4901-999f-9d9c04181d2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

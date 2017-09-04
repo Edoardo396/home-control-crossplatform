@@ -58,7 +58,7 @@ Dictionary MyRequestHandler::ParseUri(std::string uri) {
 	if (uri[0] == '/')
 		uri.erase(0, 2);
 
-	auto map = std::map<std::string, std::string>();
+	auto map = Dictionary();
 
 	std::vector<std::string> main;
 

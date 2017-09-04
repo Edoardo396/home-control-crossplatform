@@ -2,13 +2,13 @@
 
 #include <vector>
 #include <algorithm>
-#include <map>
+#include <unordered_map>
 
 #define OUT
 const int port = 8080;
 #define ABSTRACT
 
-typedef std::map<std::string, std::string> Dictionary;
+typedef std::unordered_map<std::string, std::string> Dictionary;
 
 
 /* FOREGROUND */

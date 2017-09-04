@@ -6,6 +6,7 @@
 #include "Poco/Format.h"
 #include <boost/format.hpp>
 #include "User.h"
+#include "Macros.h"
 #include <typeinfo>
 
 std::list<Device*>* Device::devices;
@@ -31,7 +32,7 @@ std::string Device::getAllInfos() {
 
 std::string Device::ExecuteCommand(std::string request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, request, timeout, false); }
 
-std::string Device::ExecuteCommand(std::map<std::string, std::string> request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir(request), timeout); }
+std::string Device::ExecuteCommand(Dictionary request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir(request), timeout); }
 
 std::string Device::ParseCommand(std::string request, Dictionary parms, User invoker) {
 
@@ -97,7 +98,7 @@ std::string Device::ToString() const { return (boost::format("%1% %2% %3% %4% %5
 
 /*
 template <class Key, class Value>
-Key Device::GetKeyByValueInMap(std::map<Key, Value> map, Value val) 
+Key Support::GetKeyByValueInMap(std::map<Key, Value> map, Value val) 
 */
 
 Device::~Device() {

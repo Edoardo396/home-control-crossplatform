@@ -5,6 +5,7 @@
 #include <boost/format.hpp>
 #include "User.h"
 #include <chrono>
+#include "Support.h"
 #include <string>
 #include <boost/algorithm/string/erase.hpp>
 
@@ -13,7 +14,7 @@ void ArduinoTemperature::KeepTemperature() {
     try {
 
         while (true) {
-            ConsoleLogger::Write("Checking internal temperature of " + this->getName() + "...", LogType::Automator);
+            ConsoleLogger::Write("Checking internal temperature of " + this->getName() + "...", LogType::Message);
             float temp = getInternalTemperature();
 
             if (temp < myTemperature - .5f) {
@@ -110,7 +111,7 @@ std::string ArduinoTemperature::ParseCommand(std::string request, Dictionary par
 
     if (request == "getKTLoc") return locationStr[keepTempLocation];
     if(request == "setKTLoc") {
-        this->ChangeKTLocation(Device::GetKeyByValueInMap(locationStr, parms["p0"]));
+        this->ChangeKTLocation(Support::GetKeyByValueInMap(locationStr, parms["p0"]));
         return "true";
     }
 
