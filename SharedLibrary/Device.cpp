@@ -32,7 +32,7 @@ std::string Device::getAllInfos() {
 
 std::string Device::ExecuteCommand(std::string request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, request, timeout, false); }
 
-std::string Device::ExecuteCommand(Dictionary request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir(request), timeout); }
+std::string Device::ExecuteCommand(Dictionary request, int timeout) const { return Command::ExecuteGETRequest(ipAddress, port, Command::GetCommandDir(request), timeout, true); }
 
 std::string Device::ParseCommand(std::string request, Dictionary parms, User invoker) {
 
@@ -56,7 +56,7 @@ std::string Device::ParseCommand(std::string request, Dictionary parms, User inv
             return "true";
         }
 
-        // TODO GetDeviceInfo, GetState, getDisplayName
+        // TODO GetDeviceInfo, GetState, getDisplayName, setTemp
 
         if (request == "getDeviceInfo") { return this->ExecuteCommand(request); }
         if (request == "getState") { return this->ExecuteCommand(request); }

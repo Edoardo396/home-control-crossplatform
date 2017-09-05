@@ -30,10 +30,21 @@ private:
 
 public:
 
+    static inline void Log(std::string text, LogType type) {
+        Write(text.c_str(), type);
+    }
+
+    static inline void Log(const char* text, LogType type) {
+        Write(text, type);
+    }
+
+
+    [[deprecated("Use Log() instead")]]
 	static void Write(std::string text, LogType type) {
 		Write(text.c_str(), type);
 	}
 
+    [[deprecated("Use Log() instead")]]
 	static void Write(const char* text, LogType type) {
 
 		auto enummsg = std::string();
@@ -74,5 +85,12 @@ public:
 		std::cout << enummsg + " " + text << std::endl;
 #endif
 	}
+
+    static std::string LogAndReturn(std::string text, LogType type) {
+        Write(text, type);
+        return text;
+	}
+
+
 };
 

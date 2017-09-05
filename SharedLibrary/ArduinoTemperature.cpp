@@ -26,9 +26,10 @@ void ArduinoTemperature::KeepTemperature() {
                 state = State::Off;
                 ConsoleLogger::Write("Device " + this->name + " set to off", LogType::Message);
             }
-            boost::this_thread::interruption_point();
-            std::this_thread::sleep_for(std::chrono::seconds(20));
-            boost::this_thread::interruption_point();
+            for(short i = 0; i< 12 ;++i) {
+                std::this_thread::sleep_for(std::chrono::seconds(10));
+                boost::this_thread::interruption_point();
+            }
           
         }
     } catch(boost::thread_interrupted& e) {
@@ -63,29 +64,26 @@ int ArduinoTemperature::getInternalHumidity() const { return ArduinoNANTemp(this
 
 void ArduinoTemperature::ChangeKTLocation(Location nl) {
 
+    if (nl == keepTempLocation) return;
 
     if (nl == Location::Manual) {
-        StopKT();
+        if(keepTempLocation == Location::Server) StopKT();
         SetOff();
-        return;
     }
     
     if(nl == Location::Device) {
-        StopKT();
-        if (!(this->ExecuteCommand(Dictionary({ {"request","setTemp"}, {"params", std::to_string(myTemperature)} })) == "true")) {
+        if (this->ExecuteCommand(Dictionary({ {"request","setTemp"}, {"params", std::to_string(myTemperature)} })) != "true") {
             ConsoleLogger::Write("Error while changing KTLoc for " + name + " setting to manual off.", LogType::Warning);
             this->ChangeKTLocation(Location::Manual);
             return;
         }
+        StopKT();
         this->ExecuteCommand("setOn");
     }
 
     if (nl == Location::Server && keepTempLocation != Location::Server)
         StartKT();
     
-
-
-
     this->keepTempLocation = nl;
 }
 
@@ -140,6 +138,19 @@ void ArduinoTemperature::SetOn() {
 }
 
 void ArduinoTemperature::SetOff() {
+    switch (keepTempLocation) {
+    case Location::Device:
+        this->ExecuteCommand("setOff");
+        break;
+    case Location::Server:
+        StopKT();
+        SetOff();
+        break;
+    case Location::Manual:
+        this->ExecuteCommand("setOff");
+        break;
+    default:;
+    }
 }
 
 std::string ArduinoTemperature::GetDeviceInfo() const {
