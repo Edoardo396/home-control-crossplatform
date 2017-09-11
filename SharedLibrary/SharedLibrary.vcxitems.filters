@@ -81,9 +81,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h">
       <Filter>Support</Filter>
     </ClInclude>
-    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\Support.h">
-      <Filter>Support</Filter>
-    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Support.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Devices">
