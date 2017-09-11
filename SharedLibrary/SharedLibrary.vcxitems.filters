@@ -34,6 +34,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp">
       <Filter>Support</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AutomatorAction.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DeviceAutomator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoTemperature.h">
@@ -82,6 +84,8 @@
       <Filter>Support</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Support.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AutomatorAction.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DeviceAutomator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Devices">

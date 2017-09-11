@@ -102,7 +102,7 @@ Key Support::GetKeyByValueInMap(std::map<Key, Value> map, Value val)
 */
 
 Device::~Device() {
-
+    delete automator;
 }
 
 // TODO Remove in version 2

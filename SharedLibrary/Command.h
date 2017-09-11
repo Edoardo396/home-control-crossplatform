@@ -3,7 +3,7 @@
 #include <map>
 #include <vector>
 #include <Poco/Net/IPAddress.h>
-#include "KeepTemperatureThread.h"
+#include "Macros.h"
 
 
 class Command {

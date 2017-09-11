@@ -54,6 +54,7 @@ protected:
 	static std::map<State, std::string> statesStr;
     static std::map<Location, std::string> locationStr;
 
+    class DeviceAutomator* automator;
 	State state = State::Unknown;
 	Poco::Net::IPAddress ipAddress;
 	int requiredAccessLevel;
@@ -92,6 +93,8 @@ protected:
 
 
 public:
+
+    void AttachAutomator(DeviceAutomator* automator) { this->automator = automator; }
 	virtual std::string ParseCommand(std::string request, Dictionary parms, User invoker) override;
 	bool Ping() const;
 	virtual bool CheckReachability();
