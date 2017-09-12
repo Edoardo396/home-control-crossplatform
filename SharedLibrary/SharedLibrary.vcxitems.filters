@@ -34,11 +34,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp">
       <Filter>Support</Filter>
     </ClCompile>
+    <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorSyncronizer.cpp">
+      <Filter>Devices\Automator</Filter>
+    </ClCompile>
     <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorAction.cpp">
-      <Filter>Devices</Filter>
+      <Filter>Devices\Automator</Filter>
     </ClCompile>
     <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\DeviceAutomator.cpp">
-      <Filter>Devices</Filter>
+      <Filter>Devices\Automator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -87,14 +90,17 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h">
       <Filter>Support</Filter>
     </ClInclude>
-    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorAction.h">
-      <Filter>Devices</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\DeviceAutomator.h">
-      <Filter>Devices</Filter>
-    </ClInclude>
     <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\Support.h">
       <Filter>Support</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorSyncronizer.h">
+      <Filter>Devices\Automator</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorAction.h">
+      <Filter>Devices\Automator</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\DeviceAutomator.h">
+      <Filter>Devices\Automator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +115,9 @@
     </Filter>
     <Filter Include="Support">
       <UniqueIdentifier>{18759936-b61e-4901-999f-9d9c04181d2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Devices\Automator">
+      <UniqueIdentifier>{db3332ac-172e-490c-b613-f2c702292ca9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
