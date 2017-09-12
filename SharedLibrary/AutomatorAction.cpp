@@ -50,7 +50,12 @@ bool AutomatorAction::isActive() {
     
     auto now = DateTime();
 
-    Timespan time = now.timestamp() - t.timestamp();
+    auto nowt = Timespan(0, now.hour(), now.minute(), now.second(), now.microsecond());
+    auto tt = Timespan(0, t.hour(), t.minute(), t.second(), t.microsecond());
+
+    std::cout << nowt.hours() << nowt.minutes() << nowt.seconds();
+
+    Timespan time = nowt - tt;
 
     if (time.hours() != 0) return false;
     if (time.minutes() < 0 || time.minutes() > 15) return false;
