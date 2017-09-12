@@ -34,8 +34,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp">
       <Filter>Support</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)AutomatorAction.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)DeviceAutomator.cpp" />
+    <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorAction.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\DeviceAutomator.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoTemperature.h">
@@ -83,9 +87,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h">
       <Filter>Support</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Support.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)AutomatorAction.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)DeviceAutomator.h" />
+    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorAction.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\DeviceAutomator.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\Support.h">
+      <Filter>Support</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Devices">

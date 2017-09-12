@@ -11,17 +11,22 @@
 #include "Poco/DOM/AutoPtr.h"
 #include "Poco/SAX/InputSource.h"
 #include "Poco/DOM/NamedNodeMap.h"
+#include "Poco/DOM/NodeIterator.h"
+#include "DeviceAutomator.h"
 #include "User.h"
 #include <boost/thread.hpp>
 #include "ConsoleLogger.h"
 #include "ArduinoUnlocker.h"
 #include "Macros.h"
+#include "Poco/DOM/NodeFilter.h"
+#include "Poco/DOM/TreeWalker.h"
 #include <boost/format.hpp>
 #include "ServerDevice.h"
 #include "DaikinAC.h"
 #include <string>
 #include "ArduinoTemperature.h"
 #include "Command.h"
+#include "AutomatorAction.h"
 
 
 using std::cout;
@@ -45,7 +50,7 @@ std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
     ConsoleLogger::Write("Reloading devices list...", LogType::Message);
 
 	using namespace Poco::XML;
-
+    using std::string;
 
 	auto devlist = new std::list<Device*>();
 
@@ -64,15 +69,37 @@ std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
         
 		DVLOAD devtmp = { DEVXMLTEXTOF(/Type), DEVXMLTEXTOF(/DisplayName), DEVXMLTEXTOF(/Nome), std::stoi(DEVXMLTEXTOF(/RAL)), std::stoi(DEVXMLTEXTOF(/Port)), Poco::Net::IPAddress::parse(DEVXMLTEXTOF(/IPAddress)) };
 
+        Device* d = nullptr;
+
         if (devtmp.type == "ArduinoUnlocker")
-            devlist->push_back(new ArduinoUnlocker(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, devtmp.dispname, Device::State::Unknown));
+            d = new ArduinoUnlocker(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, devtmp.dispname, Device::State::Unknown);
         else if (devtmp.type == "DaikinAC")
-            devlist->push_back(new DaikinAC(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, devtmp.dispname, Device::State::Unknown));
+            d = new DaikinAC(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, devtmp.dispname, Device::State::Unknown);
         else if (devtmp.type == "ArduinoTemperature")
-            devlist->push_back(new ArduinoTemperature(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, DEVXMLTEXTOF(/DisplayName), Device::State::Unknown, Device::LocationByText(DEVXMLTEXTOF(/KTLocation)), DEVXMLTEXTOF(/AutoStart) == "true", std::stof(DEVXMLTEXTOF(/MyTemp))));
+            d = new ArduinoTemperature(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, DEVXMLTEXTOF(/DisplayName), Device::State::Unknown, Device::LocationByText(DEVXMLTEXTOF(/KTLocation)), DEVXMLTEXTOF(/AutoStart) == "true", std::stof(DEVXMLTEXTOF(/MyTemp)));
 		else
 			ConsoleLogger::Write((boost::format("Not recognized type \"%1%\" of %2%") % devtmp.type % devtmp.name).str(), LogType::Warning);
 
+        auto automator = device->getNodeByPath("/Automator");
+
+        if (automator == nullptr) continue;
+        
+        auto walker = TreeWalker(automator, NodeFilter::SHOW_ELEMENT);
+
+	    auto actions = std::vector<AutomatorAction>();
+
+        // TODO Remove pointer in the for loop
+
+        for (Node* pNode = walker.firstChild(); pNode != nullptr; pNode = pNode->nextSibling()) {
+            auto pElem = dynamic_cast<Element*>(pNode);
+            if (pElem) 
+                actions.push_back(AutomatorAction(XMLTEXTOF(/WeekDays, pElem), XMLTEXTOF(/DateTime, pElem), XMLTEXTOF(/Command, pElem)));           
+        }
+
+        auto automatoro = new DeviceAutomator(d);
+        d->AttachAutomator(automatoro);
+	       
+        devlist->push_back(d);
 #pragma endregion 
 
 	
