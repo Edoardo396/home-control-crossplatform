@@ -34,13 +34,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)User.cpp">
       <Filter>Support</Filter>
     </ClCompile>
-    <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorSyncronizer.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)AutomatorSyncronizer.cpp">
       <Filter>Devices\Automator</Filter>
     </ClCompile>
-    <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorAction.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)AutomatorAction.cpp">
       <Filter>Devices\Automator</Filter>
     </ClCompile>
-    <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\DeviceAutomator.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)DeviceAutomator.cpp">
       <Filter>Devices\Automator</Filter>
     </ClCompile>
   </ItemGroup>
@@ -90,16 +90,16 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)User.h">
       <Filter>Support</Filter>
     </ClInclude>
-    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\Support.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Support.h">
       <Filter>Support</Filter>
     </ClInclude>
-    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorSyncronizer.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)AutomatorSyncronizer.h">
       <Filter>Devices\Automator</Filter>
     </ClInclude>
-    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\AutomatorAction.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)AutomatorAction.h">
       <Filter>Devices\Automator</Filter>
     </ClInclude>
-    <ClInclude Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\DeviceAutomator.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)DeviceAutomator.h">
       <Filter>Devices\Automator</Filter>
     </ClInclude>
   </ItemGroup>

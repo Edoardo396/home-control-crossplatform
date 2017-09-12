@@ -23,6 +23,7 @@ public:
 		Unknown
 	};
 
+    friend class AutomatorSyncronizer;
 
     template <class Key, class Value>
     [[deprecated("Use Support class instead")]]
@@ -54,7 +55,7 @@ protected:
 	static std::map<State, std::string> statesStr;
     static std::map<Location, std::string> locationStr;
 
-    class DeviceAutomator* automator;
+    class DeviceAutomator* automator = nullptr;
 	State state = State::Unknown;
 	Poco::Net::IPAddress ipAddress;
 	int requiredAccessLevel;
@@ -76,7 +77,8 @@ public:
 		  requiredAccessLevel(required_access_level),
 		  port(port),
 		  displayName(display_name),
-        name(name) {
+        name(name),
+    automator(nullptr) {
         if (state == State::Unknown) this->CheckReachability();
 	}
 

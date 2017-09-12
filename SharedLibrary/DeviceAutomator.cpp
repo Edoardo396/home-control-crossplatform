@@ -12,9 +12,6 @@ std::string DeviceAutomator::ParseCommand(std::string request, Dictionary parms,
     return "false";
 }
 
-DeviceAutomator::DeviceAutomator(Device* device) {
-    this->device = device;
-}
 
 void DeviceAutomator::Check() {
     for (auto action : actions){
