@@ -48,15 +48,16 @@ bool AutomatorAction::isActive() {
 
     if (!enabled) return false;
     
-    auto now = DateTime();
+    auto now = LocalDateTime();
 
     auto nowt = Timespan(0, now.hour(), now.minute(), now.second(), now.microsecond());
     auto tt = Timespan(0, t.hour(), t.minute(), t.second(), t.microsecond());
 
-    std::cout << nowt.hours() << nowt.minutes() << nowt.seconds();
+ //   std::cout << tt.hours() << " " << tt.minutes() << " " << tt.seconds();
 
     Timespan time = nowt - tt;
 
+    if (t.year() != 1970 && time.days() != 0) return false;
     if (time.hours() != 0) return false;
     if (time.minutes() < 0 || time.minutes() > 15) return false;
 
