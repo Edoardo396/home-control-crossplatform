@@ -12,7 +12,7 @@ void AutomatorSyncronizer::automator_func() {
         }
         
 
-        for (int i = 0; i < 6; ++i) {
+        for (int i = 0; i < 1; ++i) {
             std::this_thread::sleep_for(std::chrono::seconds(10));
             boost::this_thread::interruption_point();
         }

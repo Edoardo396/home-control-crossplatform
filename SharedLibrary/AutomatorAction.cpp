@@ -18,6 +18,10 @@ AutomatorAction::AutomatorAction(const std::string & day_of_weeks, const std::st
     this->command = command;
 }
 
+AutomatorAction::~AutomatorAction() {
+    
+}
+
 std::vector<AutomatorAction::DayOfWeek> AutomatorAction::ParseWeekDays(std::string s) {
 
     using std::string;
@@ -45,10 +49,15 @@ std::vector<AutomatorAction::DayOfWeek> AutomatorAction::ParseWeekDays(std::stri
 bool AutomatorAction::isActive() {
 
     using namespace Poco;
-
-    if (!enabled) return false;
     
     auto now = LocalDateTime();
+
+    if((now-*lastStopTime).days() >= 1) {
+        lastStopTime = nullptr;
+        enabled = true;
+    }
+
+    if (!enabled) return false;
 
     auto nowt = Timespan(0, now.hour(), now.minute(), now.second(), now.microsecond());
     auto tt = Timespan(0, t.hour(), t.minute(), t.second(), t.microsecond());

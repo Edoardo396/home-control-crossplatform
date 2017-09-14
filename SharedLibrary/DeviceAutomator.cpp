@@ -14,16 +14,19 @@ std::string DeviceAutomator::ParseCommand(std::string request, Dictionary parms,
 
 
 void DeviceAutomator::Check() {
-    for (auto action : actions){
+    for (AutomatorAction& action : actions){
         if(!action.isActive()) continue;
 
-        if(device->ParseCommand(action.command, Dictionary(), User(-3, "Automator", "", 100)) == "false") {
+        std::string response = device->ParseCommand(action.command, Dictionary(), User(-3, "Automator", "", 100));
+
+        if(response == "false") {
             ConsoleLogger::Log((boost::format("Error executing %1% on %2%") % action.command % device->getName()).str(), LogType::Error);
             continue;
         }
 
         action.enabled = false;
-        ConsoleLogger::Log((boost::format("Executed %1% on %2%") % action.command % device->getName()).str(), LogType::Automator);
+        action.lastStopTime = std::make_unique<Poco::DateTime>();
+        ConsoleLogger::Log((boost::format("Executed %1% on %2% -> %3%") % action.command % device->getName() % response).str(), LogType::Automator);
     }
 }
 
