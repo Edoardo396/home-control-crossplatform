@@ -18,10 +18,6 @@ AutomatorAction::AutomatorAction(const std::string & day_of_weeks, const std::st
     this->command = command;
 }
 
-AutomatorAction::~AutomatorAction() {
-    
-}
-
 std::vector<AutomatorAction::DayOfWeek> AutomatorAction::ParseWeekDays(std::string s) {
 
     using std::string;
