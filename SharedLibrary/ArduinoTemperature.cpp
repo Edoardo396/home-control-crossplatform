@@ -142,8 +142,6 @@ std::string ArduinoTemperature::ParseCommand(std::string request, Dictionary par
         try { return std::to_string(this->getTemp()); } catch (...) { return "false"; }
     }
 
-    if (request == "sync") this->Sync();
-
 
     return std::string("CommandNotFound");
 }
