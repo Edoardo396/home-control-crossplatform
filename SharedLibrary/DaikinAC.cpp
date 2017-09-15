@@ -35,6 +35,11 @@ std::string DaikinAC::getAllInfos() {
     return rtn;
 }
 
+void DaikinAC::Sync() {
+    this->PullData();
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+
 void DaikinAC::PullControlData() {
     using std::string;
 

@@ -118,6 +118,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Util\include;D:\ProgrammazioneOffline\Libraries\Boost 1.65.1;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Net\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\XML\include;D:\ProgrammazioneOffline\Libraries\Poco-1.7.8p2\Foundation\include</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

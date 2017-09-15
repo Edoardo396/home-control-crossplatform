@@ -16,6 +16,27 @@ class AutomatorAction {
 
 public:
     std::string command;
+
+
+    AutomatorAction(const AutomatorAction& other)
+        : id(other.id),
+          weekDays(other.weekDays),
+          t(other.t),
+          enabled(other.enabled),
+          command(other.command) {
+        if (other.lastStopTime == nullptr) return;
+        lastStopTime = std::make_unique<Poco::DateTime>(*other.lastStopTime);
+    }
+
+    AutomatorAction(AutomatorAction&& other) noexcept
+        : id(other.id),
+          weekDays(std::move(other.weekDays)),
+          t(std::move(other.t)),
+          lastStopTime(std::move(other.lastStopTime)),
+          enabled(other.enabled),
+          command(std::move(other.command)) {
+    }
+
     AutomatorAction(const std::vector<DayOfWeek>& day_of_weeks, const Poco::DateTime& t, const std::string& command,
         int id)
         : id(id),

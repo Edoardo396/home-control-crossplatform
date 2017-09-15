@@ -9,6 +9,8 @@ int main(int argc, char** argv) {
 
 	MyServerApplication app("C:\\Users\\edoardo.fullin\\Desktop\\Database\\HomeControlDB.xml");
  
+    ConsoleLogger::Init(argc >= 2 ? argv[1] : "");
+
 	ConsoleLogger::Write("Starting Application...", LogType::Message);
 
 	return app.run(argc, argv);

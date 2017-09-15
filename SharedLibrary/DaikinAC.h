@@ -14,8 +14,9 @@ private:
 
 protected:
     std::string getAllInfos() override;
+    void Sync() override;
 
-private:
+    private:
 	static std::map<FanSpeed, std::string> fanSpeedStr;
 
 	float internalTemperature, externalTemperature, myTemperature;
@@ -143,10 +144,10 @@ protected:
 public:
 
 	DaikinAC(const std::string& name, const Poco::Net::IPAddress& ip_address, int required_access_level, int port, const std::string& display_name, State state)
-		: Device(name, ip_address, required_access_level, port, display_name, state) { if (this->IsOK()) PullData(); }
+		: Device(name, ip_address, required_access_level, port, display_name, state) { if (this->IsOK()) Sync(); }
 
 	DaikinAC(const std::string& name, const Poco::Net::IPAddress& ip_address, int required_access_level, int port)
-		: Device(name, ip_address, required_access_level, port) { if (this->IsOK()) PullData(); }
+		: Device(name, ip_address, required_access_level, port) { if (this->IsOK()) Sync(); }
 
 	std::string ParseCommand(std::string request, Dictionary parms, User invoker) override;
 	inline void SetOn() override;

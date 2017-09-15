@@ -48,7 +48,7 @@ bool AutomatorAction::isActive() {
     
     auto now = LocalDateTime();
 
-    if((now-*lastStopTime).days() >= 1) {
+    if(lastStopTime != nullptr && (now-*lastStopTime).days() >= 1) {
         lastStopTime = nullptr;
         enabled = true;
     }

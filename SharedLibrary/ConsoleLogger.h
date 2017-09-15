@@ -4,6 +4,9 @@
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormatter.h"
 #include "Macros.h"
+#include <fstream>
+#include <cassert>
+#include <mutex>
 
 enum class LogType {
 	Automator = 0, Warning = 1, Error = 2, Message = 3
@@ -11,8 +14,24 @@ enum class LogType {
 
 class ConsoleLogger {
 
-private:
+    static std::mutex mtx;
+    static std::ofstream* filestream;
 
+public:
+
+    static void Init(std::string file) {
+        filestream = new std::ofstream(file);
+
+        if (!filestream->good())
+            ConsoleLogger::Log("Log file not found", LogType::Warning);
+    }
+
+    static void Finalize() {
+        filestream->flush();
+        filestream->close();
+        delete filestream;
+    }
+private:
 	static void InitStringLogType(OUT std::string& string, LogType type) {
 
 		auto dt = Poco::LocalDateTime();
@@ -46,7 +65,14 @@ public:
 
     [[deprecated("Use Log() instead")]]
 	static void Write(const char* text, LogType type) {
+        if (filestream == nullptr) { 
+            std::cerr << "ERROR LOG FILE IS NULL\n"; 
+            std::cout << "ERROR LOG FILE IS NULL\n";
+            std::cin.get();
+            exit(1);
+        }
 
+        mtx.lock();
 		auto enummsg = std::string();
 
 		InitStringLogType(OUT enummsg, type);
@@ -81,8 +107,13 @@ public:
 			SetConsoleTextAttribute(hConsole, 12);
 		if (type == LogType::Message)
 			SetConsoleTextAttribute(hConsole, 11);
-
+ 
 		std::cout << enummsg + " " + text << std::endl;
+        
+        if(filestream->good()) 
+            *filestream << enummsg + " " + text << std::endl;
+
+        mtx.unlock();
 #endif
 	}
 
@@ -93,4 +124,3 @@ public:
 
 
 };
-

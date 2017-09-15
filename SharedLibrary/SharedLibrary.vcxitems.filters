@@ -43,6 +43,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)DeviceAutomator.cpp">
       <Filter>Devices\Automator</Filter>
     </ClCompile>
+    <ClCompile Include="D:\ProgrammazioneOffline\HomeControl\SharedLibrary\ConsoleLogger.cpp">
+      <Filter>Support</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ArduinoTemperature.h">

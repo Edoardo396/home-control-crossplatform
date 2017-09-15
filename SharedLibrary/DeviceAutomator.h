@@ -20,6 +20,7 @@ public:
           enabled(enabled) {
     }
 
+
     void Check();
     std::string ToString();
     ~DeviceAutomator();

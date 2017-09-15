@@ -93,6 +93,7 @@ protected:
 	std::string ExecuteCommand(std::string request, int timeout = 15) const;
 	std::string ExecuteCommand(Dictionary request, int timeout = 15) const;
 
+    virtual void Sync();
 
 public:
 

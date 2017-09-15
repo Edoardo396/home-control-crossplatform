@@ -92,6 +92,11 @@ void Device::SetOn() { this->ExecuteCommand("setOn"); state = State::Operating; 
 
 void Device::SetOff() { this->ExecuteCommand("setOff"); state = State::Off; }
 
+void Device::Sync() {
+
+
+}
+
 std::string Device::GetDeviceInfo() const { return this->ExecuteCommand("getDeviceInfos"); }
 
 std::string Device::ToString() const { return (boost::format("%1% %2% %3% %4% %5%") % name % displayName % ipAddress.toString() % port % statesStr[state]).str(); }

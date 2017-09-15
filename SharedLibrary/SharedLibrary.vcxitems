@@ -45,6 +45,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)AutomatorSyncronizer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Command.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CommandParser.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ConsoleLogger.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DaikinAC.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Device.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DeviceAutomator.cpp" />

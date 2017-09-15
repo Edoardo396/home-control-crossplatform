@@ -16,7 +16,6 @@ class ArduinoTemperature : public Device {
     Location keepTempLocation; // Nexer change this, use ChangeKTLocation!
 
 protected:
-
     float getInternalTemperature() const;
     int getInternalHumidity() const;
     bool autoStart;
@@ -33,7 +32,8 @@ public:
           autoStart(auto_start),
         myTemperature(my_temperature) {
 
-        if (auto_start && this->IsOK()) this->StartKT();
+        if (this->IsOK()) this->Sync(); // Resolved with ArduinoTemperature::Sync() override, statically.
+        if (auto_start && this->IsOK() && keepTempLocation == Location::Server) this->StartKT();
 
     }
 
@@ -48,13 +48,16 @@ public:
 protected:
     void StartKT();
     void StopKT();
-
+    void Sync() override;
 
 public:
     std::string ParseCommand(std::string request, Dictionary parms, User invoker) override;
     void SetOn() override;
     void SetOff() override;
+    void SetTemp(float nt);
+    float getTemp() const;
     std::string GetDeviceInfo() const override;
     ~ArduinoTemperature();
 };
+
 

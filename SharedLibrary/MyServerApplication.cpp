@@ -175,7 +175,7 @@ std::list<User>* MyServerApplication::ReloadUsersFromXML() {
     return usersList;
 }
 
-int MyServerApplication::main(const std::vector<std::string>&) {
+int MyServerApplication::main(const std::vector<std::string>& params) {
     using namespace Poco::Net;
 
     ConsoleLogger::Write("Creating users list...", LogType::Message);
@@ -197,6 +197,8 @@ int MyServerApplication::main(const std::vector<std::string>&) {
 
     std::cout << "Shutting down... " << std::endl;
     server.stop();
+
+    ConsoleLogger::Finalize();
 
     return Application::EXIT_OK;
 }
