@@ -113,6 +113,9 @@
       <PreprocessorDefinitions>NDEBUG;LINUX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
+    <RemotePostBuildEvent>
+      <Command>./home/pi/copy.sh</Command>
+    </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

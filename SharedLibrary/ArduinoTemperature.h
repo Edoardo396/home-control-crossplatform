@@ -34,6 +34,8 @@ public:
 
         if (this->IsOK()) this->Sync(); // Resolved with ArduinoTemperature::Sync() override, statically.
         if (auto_start && this->IsOK() && keepTempLocation == Location::Server) this->StartKT();
+        if (auto_start && this->IsOK() && keep_temp_location != Location::Server) this->SetOn();
+        ChangeKTLocation(keep_temp_location);
 
     }
 

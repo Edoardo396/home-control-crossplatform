@@ -63,7 +63,7 @@ std::string Device::ParseCommand(std::string request, Dictionary parms, User inv
         if (request == "getState") { return this->ExecuteCommand(request); }
         if (request == "getDisplayName") { return displayName; }
         if (request == "getAllInfos") { return this->getAllInfos(); }
-        if (request == "sync") this->Sync();
+        if (request == "sync") { this->Sync(); return "true"; }
 
     }
     catch (std::exception& e) { return "false, " + std::string(e.what()); }

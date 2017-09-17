@@ -26,7 +26,7 @@ void ArduinoTemperature::KeepTemperature() {
                 state = State::Off;
                 ConsoleLogger::Write("Device " + this->name + " set to off", LogType::Message);
             }
-            for(short i = 0; i< 12 ;++i) {
+            for(short i = 0; i< 6 ;++i) {
                 std::this_thread::sleep_for(std::chrono::seconds(10));
                 boost::this_thread::interruption_point();
             }
@@ -64,26 +64,26 @@ int ArduinoTemperature::getInternalHumidity() const { return ArduinoNANTemp(this
 
 void ArduinoTemperature::ChangeKTLocation(Location nl) {
 
-    if (nl == keepTempLocation) return;
-
     if (nl == Location::Manual) {
         if(keepTempLocation == Location::Server) StopKT();
+        this->ExecuteCommand({ { "request", "setMyTemp" },{ "params", "-1.0" } });
         SetOff();
     }
     
     if(nl == Location::Device) {
-        if (this->ExecuteCommand(Dictionary({ {"request","setTemp"}, {"params", std::to_string(myTemperature)} })) != "true") {
+        if (this->ExecuteCommand(Dictionary({ {"request","setMyTemp"}, {"params", std::to_string(myTemperature)} })) != "true") {
             ConsoleLogger::Write("Error while changing KTLoc for " + name + " setting to manual off.", LogType::Warning);
             this->ChangeKTLocation(Location::Manual);
             return;
         }
         StopKT();
-        this->ExecuteCommand("setOn");
     }
 
-    if (nl == Location::Server && keepTempLocation != Location::Server)
+    if (nl == Location::Server && keepTempLocation != Location::Server) {
+        ChangeKTLocation(Location::Manual);
         StartKT();
-    
+    }
+
     this->keepTempLocation = nl;
 }
 
@@ -107,7 +107,7 @@ void ArduinoTemperature::StopKT() {
 
 void ArduinoTemperature::Sync() {
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    this->ExecuteCommand({ {"request", "setTemp"}, {"params", keepTempLocation == Location::Server ? std::to_string(myTemperature) : "-1.0"} });
+    this->ExecuteCommand({ {"request", "setMyTemp"}, {"params", keepTempLocation == Location::Device ? std::to_string(myTemperature) : "-1.0"} });
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
     ConsoleLogger::Log(name + " synced.", LogType::Message);
 }
@@ -135,7 +135,7 @@ std::string ArduinoTemperature::ParseCommand(std::string request, Dictionary par
 
     if(request == "setMyTemp") {
         
-        try { this->SetTemp(boost::lexical_cast<float>(parms["p0"])); } catch (...) { return "false"; }
+        try { this->SetTemp(boost::lexical_cast<float>(parms["p0"])); return "true"; } catch (...) { return "false"; }
     }
 
     if (request == "getMyTemp") {
@@ -199,7 +199,7 @@ float ArduinoTemperature::getTemp() const {
     if (keepTempLocation == Location::Server || keepTempLocation == Location::Manual)
         return myTemperature;
 
-    return boost::lexical_cast<float>(this->ExecuteCommand("getTemp"));
+    return boost::lexical_cast<float>(this->ExecuteCommand("getMyTemp"));
 }
 
 std::string ArduinoTemperature::GetDeviceInfo() const {
