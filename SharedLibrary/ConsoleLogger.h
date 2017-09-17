@@ -73,6 +73,7 @@ public:
         }
 
         mtx.lock();
+
 		auto enummsg = std::string();
 
 		InitStringLogType(OUT enummsg, type);
@@ -91,9 +92,12 @@ public:
         if (type == LogType::Message)
             printf("%s%s\n", KCYN, mess.c_str());
 
+        if (filestream->good())
+            *filestream << enummsg + " " + text << std::endl;
 
         printf(KWHT);
         fflush(stdout);
+        mtx.unlock();
 #endif
 
 #ifdef WIN32

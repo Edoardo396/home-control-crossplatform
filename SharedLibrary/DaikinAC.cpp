@@ -55,7 +55,7 @@ void DaikinAC::PullControlData() {
 
     this->state = dict["pow"] == "1" ? State::Operating : State::Off;
     this->opMode = ModeFromID(std::stoi(dict["mode"]));
-    this->myTemperature = dict["stemp"] != "M" ? std::stof(dict["stemp"]) : -1.f;
+    this->myTemperature = Support::is_numeric(dict["stemp"]) ? std::stof(dict["stemp"]) : -1.f;
     this->fanSpeed = FanFromID(dict["f_rate"]);
     this->SetSwingDir(dict["f_dir"]);
 }

@@ -28,6 +28,7 @@
 #include "Command.h"
 #include "AutomatorSyncronizer.h"
 #include "AutomatorAction.h"
+#include "Support.h"
 
 
 using std::cout;
@@ -81,8 +82,10 @@ std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
                              Device::State::Unknown);
         else if (devtmp.type == "ArduinoTemperature")
             d = new ArduinoTemperature(devtmp.name, devtmp.ipaddr, devtmp.ral, devtmp.port, DEVXMLTEXTOF(/DisplayName),
-                                       Device::State::Unknown, Device::LocationByText(DEVXMLTEXTOF(/KTLocation)),
-                                       DEVXMLTEXTOF(/AutoStart) == "true", std::stof(DEVXMLTEXTOF(/MyTemp)));
+                                       Device::State::Unknown,
+                                       Support::GetKeyByValueInMap<Device::Location, std::string>(
+                                           Device::locationStr, DEVXMLTEXTOF(/KTLocation)),
+                                       DEVXMLTEXTOF(/AutoStart) == "true", std::stod(DEVXMLTEXTOF(/MyTemp)));
         else
             ConsoleLogger::Write(
                 (boost::format("Not recognized type \"%1%\" of %2%") % devtmp.type % devtmp.name).str(),
@@ -90,7 +93,10 @@ std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
 
         auto automator = device->getNodeByPath("/Automator");
 
-        if (automator == nullptr) continue;
+        if (automator == nullptr) {
+            devlist->push_back(d);
+            continue;
+        }
 
         auto walker = TreeWalker(automator, NodeFilter::SHOW_ELEMENT);
 
@@ -140,7 +146,8 @@ std::list<Device*>* MyServerApplication::ReloadDevicesFromXML() {
 
 
     devlist->push_back(new ServerDevice("ServerSelf",
-                                        Poco::Net::IPAddress(std::string("127.0.0.1"), Poco::Net::IPAddress::IPv4), 0, 8080,
+                                        Poco::Net::IPAddress(std::string("127.0.0.1"), Poco::Net::IPAddress::IPv4), 0,
+                                        8080,
                                         "Server", Device::State::Reachable, serverSelfCommands));
 
     return devlist;

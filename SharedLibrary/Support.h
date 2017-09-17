@@ -1,7 +1,8 @@
 #pragma once
 #include <map>
+#include <boost/lexical_cast.hpp>
 
-static class Support {
+class Support {
 public:
     template <class Key, class Value>
     static Key GetKeyByValueInMap(std::map<Key, Value> map, Value val) {
@@ -13,6 +14,13 @@ public:
         throw std::runtime_error(std::string("Item not found"));
     }
 
-
+    static bool is_numeric(std::string s) {
+        try {
+            boost::lexical_cast<double>(s);
+            return true;
+        } catch (...) {
+            return false;
+        }
+    }
 };
 

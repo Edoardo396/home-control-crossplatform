@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SharedLibrary", "SharedLibrary\SharedLibrary.vcxitems", "{5F526D42-DBE9-4AE6-94BD-F38206B5E014}"
 EndProject
@@ -36,6 +36,7 @@ Global
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Debug|x86.Build.0 = Debug|Win32
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|Any CPU.ActiveCfg = Release|Win32
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|ARM.ActiveCfg = Release|Win32
+		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|ARM.Build.0 = Release|Win32
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|x64.ActiveCfg = Release|x64
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|x64.Build.0 = Release|x64
 		{1828F15E-D739-4E01-B87C-4B4ED3602483}.Release|x86.ActiveCfg = Release|Win32
@@ -73,5 +74,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F239138-34F7-4011-8A91-EA0DC7F0FFA4}
 	EndGlobalSection
 EndGlobal

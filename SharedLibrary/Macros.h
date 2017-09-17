@@ -8,7 +8,7 @@
 const int port = 8080;
 #define ABSTRACT
 
-typedef std::unordered_map<std::string, std::string> Dictionary;
+using Dictionary = std::unordered_map<std::string, std::string>;
 
 
 /* FOREGROUND */

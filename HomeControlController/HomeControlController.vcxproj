@@ -64,7 +64,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>/usr/local/lib</LibraryPath>
+    <LibraryPath>/usr/lib;/usr/local/lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <LibraryPath>/usr/lib;/usr/local/lib</LibraryPath>
+    <RemoteLinkLocalCopyOutput>false</RemoteLinkLocalCopyOutput>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -75,22 +79,39 @@
       <PreprocessorDefinitions>LINUX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>
       </AdditionalOptions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>/usr/local/lib/libPocoFoundationd.so;/usr/local/lib/libPocoXMLd.so;/usr/local/lib/libPocoUtild.so;/usr/local/lib/libPocoNetd.so;-lpthread;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>-lTgBot -lboost_system -lboost_iostreams -lssl -lcrypto -lpthread</AdditionalOptions>
+      <AdditionalOptions>-lTgBot -lboost_system -lboost_iostreams -lssl -lcrypto -lpthread -lboost_thread</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>LINUX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <PreprocessorDefinitions>LINUX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Link>
+      <AdditionalOptions>-lTgBot -lboost_system -lboost_iostreams -lssl -lcrypto -lpthread -lboost_thread %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>/usr/local/lib/libPocoFoundation.so;/usr/local/lib/libPocoXML.so;/usr/local/lib/libPocoUtil.so;/usr/local/lib/libPocoNet.so;-lpthread;$(StlAdditionalDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <UnrollLoops>true</UnrollLoops>
+    </ClCompile>
+    <ClCompile>
+      <LinkTimeOptimization>true</LinkTimeOptimization>
+      <PreprocessorDefinitions>NDEBUG;LINUX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

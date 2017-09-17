@@ -25,6 +25,9 @@ public:
 
     friend class AutomatorSyncronizer;
 
+    static std::map<State, std::string> statesStr;
+    static std::map<Location, std::string> locationStr;
+
     template <class Key, class Value>
     [[deprecated("Use Support class instead")]]
     static Key GetKeyByValueInMap(std::map<Key, Value> map, Value val) {
@@ -52,8 +55,6 @@ protected:
 			state == State::Operating;
 	}
 
-	static std::map<State, std::string> statesStr;
-    static std::map<Location, std::string> locationStr;
 
     class DeviceAutomator* automator = nullptr;
 	State state = State::Unknown;
