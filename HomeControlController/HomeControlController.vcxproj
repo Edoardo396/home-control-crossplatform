@@ -114,7 +114,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <RemotePostBuildEvent>
-      <Command>./home/pi/copy.sh</Command>
+      <Command>~/copy.sh</Command>
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
